@@ -312,5 +312,45 @@
 
   <!-- Scroll indicator REMOVED -->
 
+  <!-- ======================== BACKGROUND MUSIC ======================== -->
+  <audio id="bg-music" src="music/bg.mp3" autoplay loop></audio>
+
+  <!-- Mute / Unmute toggle button -->
+  <button id="music-toggle" class="music-toggle" aria-label="Mute background music" title="Toggle Music">
+    <span class="music-icon music-icon--on">樂</span>
+    <span class="music-icon music-icon--off" style="display:none;">靜</span>
+  </button>
+
+  <script>
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const btn   = document.getElementById('music-toggle');
+      const iconOn  = btn.querySelector('.music-icon--on');
+      const iconOff = btn.querySelector('.music-icon--off');
+
+      /* Respect saved preference */
+      if (localStorage.getItem('bgMusicMuted') === 'true') {
+        audio.muted = true;
+        btn.classList.add('muted');
+        iconOn.style.display  = 'none';
+        iconOff.style.display = 'inline';
+      }
+
+      btn.addEventListener('click', function () {
+        audio.muted = !audio.muted;
+        btn.classList.toggle('muted', audio.muted);
+        iconOn.style.display  = audio.muted ? 'none'   : 'inline';
+        iconOff.style.display = audio.muted ? 'inline' : 'none';
+        localStorage.setItem('bgMusicMuted', audio.muted);
+      });
+
+      /* Autoplay may be blocked — start on first interaction */
+      document.addEventListener('click', function resumeAudio() {
+        if (audio.paused) audio.play();
+        document.removeEventListener('click', resumeAudio);
+      }, { once: true });
+    })();
+  </script>
+
 </body>
 </html>
