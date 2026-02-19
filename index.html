@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Dragon — Chinese Restaurant</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======================== AMBIENT GOLD PARTICLES ======================== -->
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+
+  <!-- ======================== CINEMATIC VIGNETTE ======================== -->
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ======================== SCROLL PROGRESS BAR ======================== -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ======================== TOP NAVIGATION BAR ======================== -->
+  <header class="topbar">
+    <div class="topbar-top-accent" aria-hidden="true"></div>
+    <nav class="topbar-inner">
+      <div class="topbar-left">
+        <a href="#" class="topbar-link">MENU</a>
+        <a href="#" class="topbar-link">ABOUT</a>
+      </div>
+      <a href="#" class="topbar-brand">
+        <span class="brand-ornament" aria-hidden="true">━━ ✦</span>
+        <span class="brand-icon">龍</span>
+        <span class="brand-text">GOLDEN DRAGON</span>
+        <span class="brand-icon">龍</span>
+        <span class="brand-ornament" aria-hidden="true">✦ ━━</span>
+      </a>
+      <div class="topbar-right">
+        <a href="#" class="topbar-link">RESERVATIONS</a>
+        <a href="#" class="topbar-link topbar-link--cta">ORDER NOW</a>
+      </div>
+    </nav>
+    <div class="topbar-line"></div>
+  </header>
+
+  <!-- ======================== FIXED TABLE — Bottom-Right Corner ======================== -->
+  <!--
+    Giant circular table anchored to the BOTTOM-RIGHT corner.
+    Only ~1/4 (top-left quadrant) is visible.
+    10 plates are placed at 36° intervals around the table.
+    Table rotates continuously — each plate enters the visible
+    quadrant in turn. Scroll adds extra rotation on top.
+  -->
+  <!-- ======================== DECORATIVE DRAGONS ======================== -->
+  <!-- 
+       Refined dragon placement to match the reference image:
+       1. Top-Center: emerging from behind the table arc.
+       2. Bottom-Left: decorative element near the bottom.
+       3. Bottom-Right: large subtle dragon in the corner.
+  -->
+  <div class="dragon dragon-top-center" aria-hidden="true">
+    <img src="images/dragon.png" alt="" class="dragon-img">
+  </div>
+
+  <div class="dragon dragon-bottom-left" aria-hidden="true">
+    <img src="images/dragon.png" alt="" class="dragon-img">
+  </div>
+  
+  <div class="dragon dragon-bottom-right" aria-hidden="true">
+    <img src="images/dragon.png" alt="" class="dragon-img">
+  </div>
+
+  <div class="table-corner" aria-hidden="true">
+    <!-- Ambient light on wood (Stationary layer) -->
+    <div class="table-light"></div>
+
+    <div class="wooden-table">
+
+      <!-- 10 plates evenly spaced at 36° intervals -->
+      <div class="plate plate-1"><img src="images/d1.png" alt="Kung Pao Chicken" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-2"><img src="images/d2.png" alt="Sweet and Sour Chicken" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-3"><img src="images/d3.png" alt="Beef with Broccoli" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-4"><img src="images/d4.png" alt="Mongolian Beef" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-5"><img src="images/d5.png" alt="Sweet and Sour Shrimp" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-6"><img src="images/d6.png" alt="Mapo Tofu" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-7"><img src="images/d7.png" alt="Yangzhou Fried Rice" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-8"><img src="images/d8.png" alt="Chicken Fried Rice" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-9"><img src="images/d9.png" alt="Chow Mein" class="plate-img"><div class="plate-shadow"></div></div>
+      <div class="plate plate-10"><img src="images/d10.png" alt="Hot and Sour Soup" class="plate-img"><div class="plate-shadow"></div></div>
+
+    </div>
+
+    <!-- Steam Effect Overlay -->
+    <div class="steam-container">
+      <div class="steam-particle"></div>
+      <div class="steam-particle"></div>
+      <div class="steam-particle"></div>
+      <div class="steam-particle"></div>
+      <div class="steam-particle"></div>
+      <div class="steam-particle"></div>
+    </div>
+
+    <!-- Ember sparks near the active dish -->
+    <div class="ember-container" aria-hidden="true">
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+      <span class="ember"></span>
+    </div>
+  </div>
+
+  <!-- ======================== SCROLL-DRIVE WRAPPER ======================== -->
+  <!--
+    This scrollable container drives the table rotation.
+    We place the descriptions INSIDE each step and use sticky positioning
+    so they stay naturally while that section is in view.
+  -->
+  <div class="scroll-drive">
+    
+    <!-- Step 1 -->
+    <div class="scroll-step" id="step-1">
+      <section class="desc-section">
+        <h1 class="main-heading">KUNG PAO CHICKEN</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">宫保鸡丁 · SICHUAN</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>BOLD. SPICY. ADDICTIVE.</strong><br>Tender chicken tossed with dried chilies, roasted peanuts, and scallions in a savory-sweet Sichuan glaze.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="scroll-step" id="step-2">
+      <section class="desc-section">
+        <h1 class="main-heading">SWEET & SOUR CHICKEN</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">糖醋鸡 · CLASSIC</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>CRISPY MEETS TANGY.</strong><br>Golden fried chicken coated in glossy sweet-and-sour sauce with vibrant peppers and pineapple.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="scroll-step" id="step-3">
+      <section class="desc-section">
+        <h1 class="main-heading">BEEF WITH BROCCOLI</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">西兰花牛肉 · FAVORITE</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>SIMPLE. CLASSIC. POWERFUL.</strong><br>Juicy beef slices stir-fried with fresh broccoli in rich garlic soy sauce.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="scroll-step" id="step-4">
+      <section class="desc-section">
+        <h1 class="main-heading">MONGOLIAN<br>BEEF</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">蒙古牛肉 · SAVORY</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>SAVORY WITH A KICK.</strong><br>Tender beef seared with scallions in a bold, sweet soy glaze.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="scroll-step" id="step-5">
+      <section class="desc-section">
+        <h1 class="main-heading">SWEET & SOUR SHRIMP</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">糖醋虾 · SEAFOOD</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>CRISP. JUICY. VIBRANT.</strong><br>Lightly battered shrimp glazed in bright sweet-and-sour sauce with colorful vegetables.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="scroll-step" id="step-6">
+      <section class="desc-section">
+        <h1 class="main-heading">MAPO TOFU</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">麻婆豆腐 · AUTHENTIC</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>FIERY & AUTHENTIC.</strong><br>Silky tofu simmered in spicy chili-bean sauce with minced meat and Sichuan pepper heat.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="scroll-step" id="step-7">
+      <section class="desc-section">
+        <h1 class="main-heading">YANGZHOU FRIED RICE</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">扬州炒饭 · SIGNATURE</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>SIGNATURE CLASSIC.</strong><br>Fragrant rice stir-fried with shrimp, BBQ pork, egg, and fresh vegetables.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="scroll-step" id="step-8">
+      <section class="desc-section">
+        <h1 class="main-heading">CHICKEN FRIED RICE</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">鸡肉炒饭 · COMFORT</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>COMFORT IN EVERY BITE.</strong><br>Fluffy rice tossed with tender chicken, egg, and crisp vegetables.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="scroll-step" id="step-9">
+      <section class="desc-section">
+        <h1 class="main-heading">CHOW MEIN</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">炒面 · NOODLES</span>
+        </div>
+        <div class="info-card-body">
+          <p class="info-card-text"><strong>WOK-FIRED PERFECTION.</strong><br>Stir-fried noodles with savory sauce, fresh vegetables, and your choice of protein.</p>
+          
+        </div>
+      </article>
+      </section>
+    </div>
+
+    <!-- Step 10 -->
+    <div class="scroll-step" id="step-10">
+      <section class="desc-section">
+        <h1 class="main-heading">HOT AND SOUR SOUP</h1>
+        <article class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-label">酸辣汤 · SOUP</span>
+          </div>
+          <div class="info-card-body">
+            <p class="info-card-text"><strong>SPICY. TANGY. INVIGORATING.</strong><br>A bold blend of mushrooms, tofu, egg ribbons, and peppery heat in rich broth.</p>
+            
+          </div>
+        </article>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- ======================== LEFT CONTENT OVERLAY REMOVED (Moved inside steps) ======================== -->
+  <!-- Old content-overlay was here -->
+
+  <!-- Scroll indicator REMOVED -->
+
+</body>
+</html>
