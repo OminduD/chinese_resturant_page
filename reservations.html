@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
               <label for="phone" class="form-label">Phone</label>
-              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 123-4567">
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+94 7X XXX XXXX">
             </div>
           </div>
 
@@ -165,7 +165,7 @@
               <span class="info-icon">📍</span>
               <div class="info-detail">
                 <strong>Location</strong>
-                <span>888 Imperial Avenue, Chinatown District<br>San Francisco, CA 94108</span>
+                <span>42 Lotus Road, Colombo 03<br>Sri Lanka</span>
               </div>
             </li>
             <li>
@@ -186,14 +186,14 @@
               <span class="info-icon">📞</span>
               <div class="info-detail">
                 <strong>Phone</strong>
-                <span>+1 (415) 888-DRAGON</span>
+                <span>+94 11 234 5678</span>
               </div>
             </li>
             <li>
               <span class="info-icon">📧</span>
               <div class="info-detail">
                 <strong>Email</strong>
-                <span>reservations@goldendragon.com</span>
+                <span>reservations@goldendragon.lk</span>
               </div>
             </li>
           </ul>
@@ -228,7 +228,7 @@
             <li>✦ Tables held for 15 minutes past reservation time</li>
             <li>✦ Cancellations accepted up to 2 hours in advance</li>
             <li>✦ Groups of 8+ require advance deposit</li>
-            <li>✦ Free valet parking for all dinner guests</li>
+            <li>✦ Free parking for all dinner guests</li>
           </ul>
         </div>
 
@@ -241,7 +241,7 @@
   <!-- ======================== FOOTER ======================== -->
   <footer class="footer">
     <div class="footer-brand">✦ Golden Dragon ✦</div>
-    <p class="footer-text">888 Imperial Avenue, Chinatown District</p>
+    <p class="footer-text">42 Lotus Road, Colombo 03, Sri Lanka</p>
     <p class="footer-text">Open Daily · 11:00 AM – 11:00 PM</p>
     <div class="footer-links">
       <a href="index.html" class="footer-link">Home</a>
@@ -251,6 +251,40 @@
       <a href="order.html" class="footer-link">Order</a>
     </div>
   </footer>
+
+  <!-- ======================== BACKGROUND MUSIC ======================== -->
+  <audio id="bg-music" src="music/bg.mp3" autoplay loop></audio>
+
+  <button id="music-toggle" class="music-toggle" aria-label="Mute background music" title="Toggle Music">
+    <span class="music-icon music-icon--on">樂</span>
+    <span class="music-icon music-icon--off" style="display:none;">靜</span>
+  </button>
+
+  <script>
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const btn   = document.getElementById('music-toggle');
+      const iconOn  = btn.querySelector('.music-icon--on');
+      const iconOff = btn.querySelector('.music-icon--off');
+      if (localStorage.getItem('bgMusicMuted') === 'true') {
+        audio.muted = true;
+        btn.classList.add('muted');
+        iconOn.style.display  = 'none';
+        iconOff.style.display = 'inline';
+      }
+      btn.addEventListener('click', function () {
+        audio.muted = !audio.muted;
+        btn.classList.toggle('muted', audio.muted);
+        iconOn.style.display  = audio.muted ? 'none'   : 'inline';
+        iconOff.style.display = audio.muted ? 'inline' : 'none';
+        localStorage.setItem('bgMusicMuted', audio.muted);
+      });
+      document.addEventListener('click', function resumeAudio() {
+        if (audio.paused) audio.play();
+        document.removeEventListener('click', resumeAudio);
+      }, { once: true });
+    })();
+  </script>
 
 </body>
 </html>
