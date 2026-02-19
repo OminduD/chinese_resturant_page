@@ -305,6 +305,37 @@ a { text-decoration: none; color: inherit; }
   /* animation-delay: 2s; removed pulse for stability */
 }
 
+/* ======================== BRAND LAMP (Chinese Lantern) ======================== */
+.brand-lamp {
+  height: 3.2rem;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(212, 168, 83, 0.6))
+          drop-shadow(0 0 20px rgba(255, 107, 53, 0.3));
+  transition: all 0.4s var(--ease);
+  animation: lampSway 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.brand-lamp--left {
+  animation-delay: 0s;
+}
+
+.brand-lamp--right {
+  animation-delay: 1.5s;
+}
+
+.topbar-brand:hover .brand-lamp {
+  filter: drop-shadow(0 0 15px rgba(212, 168, 83, 0.9))
+          drop-shadow(0 0 30px rgba(255, 107, 53, 0.5))
+          drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes lampSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+
 .topbar-line {
   width: 100%;
   height: 1px;
