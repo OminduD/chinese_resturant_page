@@ -59,12 +59,12 @@
     <!-- ===== OUR HERITAGE ===== -->
     <section class="about-grid">
       <div class="about-text">
-        <p>Golden Dragon was born from a vision shared by Master Chef Wei Long and his grandmother — to bring the authentic, uncompromising flavors of China to a world that yearned for something real. In 1985, a modest shopfront in Chinatown opened its doors with just twelve tables and a single wok. The aromas of Sichuan peppercorns and hand-pulled noodles drew visitors from across the city.</p>
-        <p>Today, nearly four decades later, that same dedication to craft endures. Every dish is prepared using time-honored techniques passed down through three generations. We source the finest ingredients — from aged soy sauces brewed in clay urns to vegetables harvested at dawn from local farms.</p>
+        <p>Golden Dragon was born from a vision shared by Master Chef Wei Long and his grandmother — to bring the authentic, uncompromising flavors of China to the vibrant island of Sri Lanka. In 1985, a modest shopfront in Colombo opened its doors with just twelve tables and a single wok. The aromas of Sichuan peppercorns and hand-pulled noodles drew visitors from across the city.</p>
+        <p>Today, nearly four decades later, that same dedication to craft endures. Every dish is prepared using time-honored techniques passed down through three generations. We source the finest ingredients — from aged soy sauces brewed in clay urns to vegetables harvested at dawn from local farms across Sri Lanka.</p>
         <p>The Golden Dragon experience is not merely a meal. It is a journey through China's rich culinary landscapes: the fiery boldness of Sichuan, the delicate refinement of Cantonese dim sum, the hearty warmth of Northern wheat noodles, and the subtle artistry of Shanghainese cooking.</p>
       </div>
       <div class="about-image-wrapper">
-        <img src="images/d1.png" alt="Golden Dragon Restaurant — Heritage Dish" class="about-img">
+        <img src="images/about.jpg" alt="Golden Dragon Restaurant — Heritage Dish" class="about-img">
       </div>
     </section>
 
@@ -159,8 +159,8 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
         <div class="card">
           <h3 style="font-family: var(--ff-heading); font-size: 1.1rem; color: var(--clr-white); margin-bottom: 1rem;">Location</h3>
-          <p style="font-size: 0.9rem; color: var(--clr-text-muted); line-height: 1.7; margin-bottom: 0.5rem;">888 Imperial Avenue<br>Chinatown District<br>San Francisco, CA 94108</p>
-          <p style="font-size: 0.75rem; color: var(--clr-gold); letter-spacing: 1px; margin-top: 1rem;">FREE VALET PARKING AVAILABLE</p>
+          <p style="font-size: 0.9rem; color: var(--clr-text-muted); line-height: 1.7; margin-bottom: 0.5rem;">42 Lotus Road<br>Colombo 03<br>Sri Lanka</p>
+          <p style="font-size: 0.75rem; color: var(--clr-gold); letter-spacing: 1px; margin-top: 1rem;">FREE PARKING AVAILABLE</p>
         </div>
         <div class="card">
           <h3 style="font-family: var(--ff-heading); font-size: 1.1rem; color: var(--clr-white); margin-bottom: 1rem;">Hours</h3>
@@ -179,7 +179,7 @@
   <!-- ======================== FOOTER ======================== -->
   <footer class="footer">
     <div class="footer-brand">✦ Golden Dragon ✦</div>
-    <p class="footer-text">888 Imperial Avenue, Chinatown District</p>
+    <p class="footer-text">42 Lotus Road, Colombo 03, Sri Lanka</p>
     <p class="footer-text">Open Daily · 11:00 AM – 11:00 PM</p>
     <div class="footer-links">
       <a href="index.html" class="footer-link">Home</a>
@@ -189,6 +189,40 @@
       <a href="order.html" class="footer-link">Order</a>
     </div>
   </footer>
+
+  <!-- ======================== BACKGROUND MUSIC ======================== -->
+  <audio id="bg-music" src="music/bg.mp3" autoplay loop></audio>
+
+  <button id="music-toggle" class="music-toggle" aria-label="Mute background music" title="Toggle Music">
+    <span class="music-icon music-icon--on">樂</span>
+    <span class="music-icon music-icon--off" style="display:none;">靜</span>
+  </button>
+
+  <script>
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const btn   = document.getElementById('music-toggle');
+      const iconOn  = btn.querySelector('.music-icon--on');
+      const iconOff = btn.querySelector('.music-icon--off');
+      if (localStorage.getItem('bgMusicMuted') === 'true') {
+        audio.muted = true;
+        btn.classList.add('muted');
+        iconOn.style.display  = 'none';
+        iconOff.style.display = 'inline';
+      }
+      btn.addEventListener('click', function () {
+        audio.muted = !audio.muted;
+        btn.classList.toggle('muted', audio.muted);
+        iconOn.style.display  = audio.muted ? 'none'   : 'inline';
+        iconOff.style.display = audio.muted ? 'inline' : 'none';
+        localStorage.setItem('bgMusicMuted', audio.muted);
+      });
+      document.addEventListener('click', function resumeAudio() {
+        if (audio.paused) audio.play();
+        document.removeEventListener('click', resumeAudio);
+      }, { once: true });
+    })();
+  </script>
 
 </body>
 </html>
