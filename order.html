@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Online — Golden Dragon Chinese Restaurant</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Ambient particles -->
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ======================== TOP NAVIGATION ======================== -->
+  <header class="topbar">
+    <div class="topbar-top-accent" aria-hidden="true"></div>
+    <nav class="topbar-inner">
+      <div class="topbar-left">
+        <a href="menu.html" class="topbar-link">MENU</a>
+        <a href="about.html" class="topbar-link">ABOUT</a>
+      </div>
+      <a href="index.html" class="topbar-brand">
+        <span class="brand-ornament" aria-hidden="true">━━ ✦</span>
+        <span class="brand-icon">龍</span>
+        <span class="brand-text">GOLDEN DRAGON</span>
+        <span class="brand-icon">龍</span>
+        <span class="brand-ornament" aria-hidden="true">✦ ━━</span>
+      </a>
+      <div class="topbar-right">
+        <a href="reservations.html" class="topbar-link">RESERVATIONS</a>
+        <a href="order.html" class="topbar-link topbar-link--cta topbar-link--active">ORDER NOW</a>
+      </div>
+    </nav>
+    <div class="topbar-line"></div>
+  </header>
+
+  <!-- ======================== PAGE HERO ======================== -->
+  <section class="page-hero">
+    <h1 class="page-title">Order Online</h1>
+    <div class="ornament-divider">✦</div>
+    <p class="page-subtitle">Golden Dragon's finest dishes — delivered to your door or ready for pickup.</p>
+  </section>
+
+  <!-- ======================== ORDER CONTENT ======================== -->
+  <main class="page-content">
+
+    <!-- Delivery/Pickup Toggle -->
+    <div class="order-header-bar">
+      <div class="order-filters">
+        <button class="filter-btn filter-btn--active">All</button>
+        <button class="filter-btn">Starters</button>
+        <button class="filter-btn">Poultry</button>
+        <button class="filter-btn">Beef & Pork</button>
+        <button class="filter-btn">Seafood</button>
+        <button class="filter-btn">Noodles & Rice</button>
+        <button class="filter-btn">Soups</button>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start;">
+
+      <!-- ===== ORDER ITEMS GRID ===== -->
+      <div class="order-grid">
+
+        <!-- Item 1 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d1.png" alt="Kung Pao Chicken" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Kung Pao Chicken</div>
+            <div class="order-card-chinese">宫保鸡丁</div>
+            <p class="order-card-desc">Tender chicken with dried chilies, peanuts, and Sichuan glaze.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$18.50</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d2.png" alt="Sweet & Sour Chicken" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Sweet & Sour Chicken</div>
+            <div class="order-card-chinese">糖醋鸡</div>
+            <p class="order-card-desc">Golden fried chicken in glossy sweet-and-sour sauce.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$17.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d3.png" alt="Beef with Broccoli" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Beef with Broccoli</div>
+            <div class="order-card-chinese">西兰花牛肉</div>
+            <p class="order-card-desc">Juicy beef with fresh broccoli in garlic soy sauce.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$19.50</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d4.png" alt="Mongolian Beef" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Mongolian Beef</div>
+            <div class="order-card-chinese">蒙古牛肉</div>
+            <p class="order-card-desc">Seared beef with scallions in bold sweet soy glaze.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$21.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d5.png" alt="Sweet & Sour Shrimp" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Sweet & Sour Shrimp</div>
+            <div class="order-card-chinese">糖醋虾</div>
+            <p class="order-card-desc">Battered shrimp in bright sweet-and-sour sauce.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$20.50</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d6.png" alt="Mapo Tofu" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Mapo Tofu</div>
+            <div class="order-card-chinese">麻婆豆腐</div>
+            <p class="order-card-desc">Silky tofu in spicy chili-bean sauce with Sichuan pepper.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$15.50</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d7.png" alt="Yangzhou Fried Rice" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Yangzhou Fried Rice</div>
+            <div class="order-card-chinese">扬州炒饭</div>
+            <p class="order-card-desc">Fragrant rice with shrimp, BBQ pork, egg, and veggies.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$16.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d8.png" alt="Chicken Fried Rice" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Chicken Fried Rice</div>
+            <div class="order-card-chinese">鸡肉炒饭</div>
+            <p class="order-card-desc">Fluffy rice with tender chicken, egg, and vegetables.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$14.50</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 9 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d9.png" alt="Chow Mein" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Chow Mein</div>
+            <div class="order-card-chinese">炒面</div>
+            <p class="order-card-desc">Wok-fired noodles with savory sauce and fresh vegetables.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$14.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 10 -->
+        <div class="order-card">
+          <div class="order-card-image">
+            <img src="images/d10.png" alt="Hot and Sour Soup" class="order-card-img">
+          </div>
+          <div class="order-card-body">
+            <div class="order-card-name">Hot and Sour Soup</div>
+            <div class="order-card-chinese">酸辣汤</div>
+            <p class="order-card-desc">Mushrooms, tofu, egg ribbons in peppery rich broth.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$10.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 11 -->
+        <div class="order-card">
+          <div class="order-card-image" style="font-size: 4rem; color: var(--clr-gold); opacity: 0.3;">🥟</div>
+          <div class="order-card-body">
+            <div class="order-card-name">Xiao Long Bao (6pc)</div>
+            <div class="order-card-chinese">小笼包</div>
+            <p class="order-card-desc">Delicate soup dumplings with savory pork filling.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$12.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 12 -->
+        <div class="order-card">
+          <div class="order-card-image" style="font-size: 4rem; color: var(--clr-gold); opacity: 0.3;">🥠</div>
+          <div class="order-card-body">
+            <div class="order-card-name">Spring Rolls (4pc)</div>
+            <div class="order-card-chinese">春卷</div>
+            <p class="order-card-desc">Crispy golden rolls with shredded vegetables.</p>
+            <div class="order-card-bottom">
+              <span class="order-card-price">$9.00</span>
+              <button class="btn-add">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== ORDER SUMMARY SIDEBAR ===== -->
+      <div class="order-summary">
+        <h3>Your Order</h3>
+
+        <div class="order-summary-empty">
+          <span class="order-summary-icon">🛒</span>
+          Your cart is empty.<br>
+          Add dishes to get started.
+        </div>
+
+        <div style="border-top: 1px solid rgba(212, 168, 83, 0.1); padding-top: 1.5rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--clr-text-muted);">
+            <span>Subtotal</span>
+            <span>$0.00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--clr-text-muted);">
+            <span>Delivery Fee</span>
+            <span>$5.00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--clr-text-muted);">
+            <span>Tax</span>
+            <span>$0.00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding-top: 1rem; border-top: 1px solid rgba(212, 168, 83, 0.15); margin-bottom: 1.5rem;">
+            <span style="font-family: var(--ff-heading); font-weight: 600; color: var(--clr-white);">Total</span>
+            <span style="font-family: var(--ff-heading); font-weight: 700; font-size: 1.2rem; color: var(--clr-gold-light);">$5.00</span>
+          </div>
+          <button class="btn btn-gold" style="width: 100%;">PLACE ORDER</button>
+          <p style="text-align: center; margin-top: 1rem; font-size: 0.72rem; color: var(--clr-text-muted); letter-spacing: 1px;">FREE DELIVERY ON ORDERS OVER $50</p>
+        </div>
+
+        <!-- Delivery info -->
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(212, 168, 83, 0.08);">
+          <h4 style="font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--clr-gold); margin-bottom: 1rem;">Delivery Information</h4>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" style="font-size: 0.65rem;">Delivery Address</label>
+            <input type="text" class="form-input" placeholder="Enter your address">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="font-size: 0.65rem;">Delivery Notes</label>
+            <input type="text" class="form-input" placeholder="Apt #, gate code, etc.">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-brand">✦ Golden Dragon ✦</div>
+    <p class="footer-text">888 Imperial Avenue, Chinatown District</p>
+    <p class="footer-text">Delivery Hours · 11:30 AM – 10:00 PM</p>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="menu.html" class="footer-link">Menu</a>
+      <a href="about.html" class="footer-link">About</a>
+      <a href="reservations.html" class="footer-link">Reservations</a>
+      <a href="order.html" class="footer-link">Order</a>
+    </div>
+  </footer>
+
+</body>
+</html>
