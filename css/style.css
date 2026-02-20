@@ -862,139 +862,248 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ==========================================================================
-   INFO CARD — Traditional Chinese Scroll / Plaque Style
+   INFO CARD — Traditional Chinese Scroll / Plaque Style (FLIPPABLE)
    ========================================================================== */
 
+/* The flip container */
+.info-card-container {
+  max-width: 480px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* The flippable wrapper */
 .info-card {
-  /* Dark red/black lacquer background with subtle texture */
-  background: 
-    linear-gradient(to bottom, rgba(40, 10, 10, 0.95), rgba(20, 5, 5, 0.98)),
-    repeating-linear-gradient(45deg, transparent 0, transparent 10px, rgba(0,0,0,0.2) 10px, rgba(0,0,0,0.2) 11px);
-    
-  border: 4px double var(--clr-gold); /* Double gold border */
-  outline: 1px solid rgba(0,0,0,0.8); /* Outline for depth */
-  border-radius: 4px; /* Slightly rounded corners */
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s var(--ease-bounce);
   
-  max-width: 450px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 1rem;
+  /* Reset previous styles that conflict */
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+}
+
+/* Flip trigger */
+.info-card-container:hover .info-card {
+  transform: rotateY(180deg);
+}
+
+/* Shared Face Styles */
+.info-card-front,
+.info-card-back {
+  /* Deep, rich imperial aesthetic */
+  background: 
+    linear-gradient(to bottom, rgba(20, 5, 5, 0.96), rgba(10, 2, 2, 0.98)),
+    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSJyZ2JhKDIxMiwgMTY4LCA4MywgMC4wNSkiLz4KPC9zdmc+'); /* Subtle gold noise */
+    
+  border: 1px solid var(--clr-gold);
+  border-top: 4px solid var(--clr-red-dark);
+  border-bottom: 4px solid var(--clr-red-dark);
+  border-radius: 2px;
+  
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.5rem;
   
   box-shadow: 
-    0 20px 60px rgba(0,0,0,0.8),
-    0 0 0 1px rgba(184, 134, 11, 0.3), /* Outer ring */
-    inset 0 0 40px rgba(0,0,0,0.8);    /* Inner vignette */
-    
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s var(--ease);
+    0 30px 80px rgba(0,0,0,0.9),
+    0 0 0 1px rgba(0,0,0,1),
+    inset 0 0 60px rgba(0,0,0,0.7);
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* Ensure minimum height for consistency */
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Corner Ornaments (Simulated with gradients) */
-.info-card::before {
+.info-card-front {
+  position: relative;
+  z-index: 2;
+}
+
+.info-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Corner Ornaments (Shared) */
+.info-card-front::before,
+.info-card-back::before {
   content: '';
   position: absolute;
-  top: 4px; left: 4px; right: 4px; bottom: 4px;
-  border: 1px solid rgba(212, 168, 83, 0.3);
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(212, 168, 83, 0.25);
   pointer-events: none;
-  /* Chinese Cloud Pattern in corners using radial gradients? 
-     Let's keep it simple: A frame within a frame. */
   background: 
-    radial-gradient(circle at top left, rgba(212, 168, 83, 0.2) 0%, transparent 40px),
-    radial-gradient(circle at top right, rgba(212, 168, 83, 0.2) 0%, transparent 40px),
-    radial-gradient(circle at bottom left, rgba(212, 168, 83, 0.2) 0%, transparent 40px),
-    radial-gradient(circle at bottom right, rgba(212, 168, 83, 0.2) 0%, transparent 40px);
+    radial-gradient(circle at top left, var(--clr-red-dark) 0%, transparent 15%),
+    radial-gradient(circle at top right, var(--clr-red-dark) 0%, transparent 15%),
+    radial-gradient(circle at bottom left, var(--clr-red-dark) 0%, transparent 15%),
+    radial-gradient(circle at bottom right, var(--clr-red-dark) 0%, transparent 15%);
 }
 
-/* Subtle gold shimmer on hover */
-.info-card::after {
+/* Subtle gold sweep (Only on front for performance/cleanliness) */
+.info-card-front::after {
   content: '';
   position: absolute;
   top: 0;
   left: -150%;
-  width: 100%;
+  width: 150%;
   height: 100%;
   background: linear-gradient(
     110deg, 
-    transparent 30%, 
-    rgba(255, 215, 0, 0.1) 45%, 
-    rgba(255, 215, 0, 0.2) 50%, 
-    rgba(255, 215, 0, 0.1) 55%, 
-    transparent 70%
+    transparent 40%, 
+    rgba(212, 168, 83, 0.05) 50%, 
+    transparent 60%
   );
-  transform: skewX(-20deg);
-  animation: shineCard 8s infinite linear;
+  transform: skewX(-25deg);
+  animation: shineCard 10s infinite ease-in-out;
   pointer-events: none;
 }
 
 @keyframes shineCard {
-  0% { left: -150%; }
-  20% { left: 150%; }
+  0%, 20% { left: -150%; }
   100% { left: 150%; }
 }
 
 .info-card-header {
-  padding: 0.5rem 0.5rem 1rem 0.5rem;
-  border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.15);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
   position: relative;
 }
 
 /* Decorative center emblem in header */
 .info-card-header::after {
-  content: '❖';
+  content: '✦';
   position: absolute;
-  bottom: -0.7rem;
+  bottom: -0.9rem;
   left: 50%;
-  transform: translateX(-50%);
-  background: #1a0505; /* Match bg roughly or obscure line */
-  padding: 0 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: #120303; 
+  border: 1px solid var(--clr-gold);
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
   color: var(--clr-gold);
-  font-size: 1.2rem;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
 .info-card-label {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 4px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--clr-gold);
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  opacity: 0.9;
 }
 
 .info-card-body {
-  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-  text-align: center; /* Traditional centered text */
+  padding: 2rem 1rem 0.5rem 1rem;
+  text-align: center;
 }
 
 .info-card-text {
   font-family: var(--ff-heading);
-  font-size: 1.25rem; /* Larger, more readable */
+  font-size: 1.35rem; 
   font-style: italic;
   font-weight: 400;
-  line-height: 1.7;
-  color: #E0C0A0; /* Warmer parchment color */
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: var(--clr-white);
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .info-card-text strong {
+  display: block;
   font-family: 'Cinzel Decorative', serif;
   font-style: normal;
-  font-size: 1.1rem; /* Prominent Dish Title */
+  font-size: 1.4rem; 
   font-weight: 700;
-  letter-spacing: 2px;
-  display: block;
-  margin-bottom: 1rem;
-  color: var(--clr-gold-light);
+  letter-spacing: 3px;
+  margin-bottom: 1.2rem;
+  color: var(--clr-ember);
+  background: -webkit-linear-gradient(top, var(--clr-gold), var(--clr-ember));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(212, 168, 83, 0.1);
-  padding-bottom: 0.5rem;
-  display: inline-block; /* Allow border to hug text */
+}
+
+/* ======================== NEW PRICE STYLES ======================== */
+
+.price-display {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--clr-gold);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to bottom, #F0D48A, #D4A853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+
+.price-desc {
+  font-family: var(--ff-heading);
+  font-size: 1.1rem;
+  color: var(--clr-text-muted);
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.order-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--clr-gold);
+  color: var(--clr-gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  transition: all 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.order-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0%; height: 100%;
+  background: var(--clr-gold);
+  transition: width 0.3s var(--ease);
+  z-index: -1;
+}
+
+.order-btn:hover {
+  color: #000;
+}
+
+.order-btn:hover::before {
+  width: 100%;
 }
 
 .info-card-hint {
