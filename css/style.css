@@ -919,8 +919,8 @@ a { text-decoration: none; color: inherit; }
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   
-  /* Ensure minimum height for consistency */
-  min-height: 280px;
+  /* Ensure a larger minimum height to fit both front and back content comfortably */
+  min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1056,36 +1056,92 @@ a { text-decoration: none; color: inherit; }
 
 .price-display {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  color: var(--clr-gold);
   margin-bottom: 0.5rem;
-  background: linear-gradient(to bottom, #F0D48A, #D4A853);
+  margin-top: 0.5rem;
+  
+  /* Luxurious Gold Gradient Text */
+  background: linear-gradient(
+    to bottom,
+    #FFF8E7 0%,   /* Very pale gold top */
+    #F0D48A 25%,  /* Light gold */
+    #D4A853 50%,  /* True gold */
+    #B88A32 75%,  /* Darker bronze/gold */
+    #8B6528 100%  /* Deep antique */
+  );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  background-clip: text;
+  color: transparent;
+  
+  /* Text Shadow for depth */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  
+  letter-spacing: 1px;
+}
+
+.price-decoration-top,
+.price-decoration-bottom {
+  height: 2px;
+  width: 60%;
+  margin: 0.5rem auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--clr-gold) 50%,
+    transparent 100%
+  );
+  position: relative;
+  opacity: 0.6;
+}
+
+.price-decoration-top::after,
+.price-decoration-bottom::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  color: var(--clr-gold-light);
+  background: var(--clr-bg); /* Mask the line behind */
+  padding: 0 4px;
+  font-size: 0.8rem;
+}
+
+/* Specific adjustment for bottom decoration to vary it slightly */
+.price-decoration-bottom {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  width: 40%;
 }
 
 .price-desc {
   font-family: var(--ff-heading);
-  font-size: 1.1rem;
-  color: var(--clr-text-muted);
+  font-size: 1.05rem;
+  color: var(--clr-white);
   font-style: italic;
   margin-bottom: 2rem;
   line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+  opacity: 0.9;
 }
 
 .order-btn {
   display: inline-block;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2.5rem;
   border: 1px solid var(--clr-gold);
   color: var(--clr-gold);
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 0.9rem;
-  transition: all 0.3s var(--ease);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s var(--ease);
   position: relative;
   overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .order-btn::before {
@@ -1093,13 +1149,17 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   top: 0; left: 0;
   width: 0%; height: 100%;
-  background: var(--clr-gold);
-  transition: width 0.3s var(--ease);
+  background: linear-gradient(90deg, var(--clr-gold-light), var(--clr-gold));
+  transition: width 0.4s var(--ease);
   z-index: -1;
 }
 
 .order-btn:hover {
-  color: #000;
+  color: #1a0505; /* Dark background color for text on gold */
+  border-color: var(--clr-gold-light);
+  box-shadow: 
+    0 0 20px rgba(212, 168, 83, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .order-btn:hover::before {
