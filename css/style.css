@@ -1672,6 +1672,61 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ==========================================================================
+   DECORATIVE ELEMENTS (CLOUD & BRANCH)
+   ========================================================================== */
+
+.cloud-top-left {
+  position: fixed;
+  top: -5vh;
+  left: -5vw;
+  width: 35vw;
+  max-width: 500px;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.cloud-top-left .cloud-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.branch-bottom-left {
+  position: fixed;
+  bottom: -5vh;
+  left: -5vw;
+  width: 45vw;
+  max-width: 600px;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.branch-bottom-left .branch-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.cloud-middle-right {
+  position: fixed;
+  top: 35vh;
+  right: 40vw;
+  width: 30vw;
+  max-width: 450px;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.cloud-middle-right .cloud-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
    FLOATING GOLD PARTICLES — Ambient atmosphere
    ========================================================================== */
 
