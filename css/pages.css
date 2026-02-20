@@ -43,10 +43,21 @@ body {
   font-family: var(--ff-body);
   background-color: var(--clr-bg);
   background-image:
-    radial-gradient(circle at 80% 20%, rgba(61, 16, 16, 0.4), transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.03), transparent 50%),
+    /* Traditional cloud scroll wisps */
+    radial-gradient(ellipse 200px 100px at 85% 15%, rgba(139, 26, 26, 0.08) 0%, transparent 100%),
+    radial-gradient(ellipse 150px 80px at 10% 85%, rgba(139, 26, 26, 0.06) 0%, transparent 100%),
+    /* Warm lantern glow zones */
+    radial-gradient(circle at 80% 20%, rgba(61, 16, 16, 0.45), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.04), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(212, 168, 83, 0.02), transparent 70%),
+    /* Silk weave micro-texture */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0, transparent 12px,
+      rgba(212, 168, 83, 0.008) 12px, rgba(212, 168, 83, 0.008) 13px
+    ),
     url('../images/bg.jpg');
-  background-size: auto, auto, cover;
+  background-size: auto, auto, auto, auto, auto, auto, cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -68,35 +79,63 @@ img { max-width: 100%; display: block; }
   left: 0;
   width: 100%;
   z-index: 1000;
-  background:
-    linear-gradient(180deg, rgba(26, 10, 10, 0.95) 0%, rgba(26, 10, 10, 0.85) 100%);
+  /* Rich lacquer red/black gradient with subtle texture */
+  background: 
+    linear-gradient(180deg, rgba(30, 5, 5, 0.98) 0%, rgba(40, 10, 10, 0.95) 100%),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 10px,
+      rgba(212, 168, 83, 0.05) 10px,
+      rgba(212, 168, 83, 0.05) 11px
+    );
+  
+  /* Traditional Chinese Lattice Pattern Overlay */
+  background-image: 
+    linear-gradient(180deg, rgba(30, 5, 5, 0.98) 0%, rgba(40, 10, 10, 0.95) 100%),
+    radial-gradient(circle, rgba(212, 168, 83, 0.1) 1px, transparent 1px),
+    radial-gradient(circle, rgba(212, 168, 83, 0.1) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+  background-position: 0 0, 0 0, 10px 10px;
+
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border-bottom: 1px solid rgba(212, 168, 83, 0.15);
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.4),
-    0 1px 0 rgba(212, 168, 83, 0.08) inset;
+  
+  /* Ornate bottom border with "meander" key pattern hint */
+  border-bottom: 3px solid var(--clr-border);
+  border-image: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    var(--clr-gold) 15%, 
+    var(--clr-red-dark) 50%, 
+    var(--clr-gold) 85%, 
+    transparent 100%
+  ) 1;
+  
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(212, 168, 83, 0.2) inset;
 }
 
 .topbar-top-accent {
   width: 100%;
-  height: 2px;
-  background: linear-gradient(
+  height: 3px;
+  background: repeating-linear-gradient(
     90deg,
-    transparent 0%,
-    var(--clr-gold) 20%,
-    var(--clr-gold-light) 50%,
-    var(--clr-gold) 80%,
-    transparent 100%
+    var(--clr-gold) 0,
+    var(--clr-gold) 10px,
+    transparent 10px,
+    transparent 20px
   );
-  opacity: 0.6;
+  opacity: 0.4;
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
 }
 
 .topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 3.5rem;
+  padding: 1.2rem 3.5rem;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -104,7 +143,7 @@ img { max-width: 100%; display: block; }
 .topbar-left,
 .topbar-right {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   flex: 1;
 }
 
@@ -113,69 +152,121 @@ img { max-width: 100%; display: block; }
 }
 
 .topbar-link {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 2.5px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--clr-text-muted);
-  transition: all 0.35s var(--ease);
+  transition: all 0.4s var(--ease);
   position: relative;
-  padding: 0.3rem 0;
+  padding: 0.6rem 1.2rem;
+  overflow: hidden;
+}
+
+.topbar-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(139, 26, 26, 0.85) 0%,
+    rgba(139, 26, 26, 0.4) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s var(--ease), height 0.5s var(--ease);
+  z-index: -1;
 }
 
 .topbar-link::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--clr-gold-light), transparent);
-  transition: width 0.4s var(--ease);
+  bottom: 2px;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--clr-gold) 15%,
+    var(--clr-gold-light) 50%,
+    var(--clr-gold) 85%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease);
+  border-radius: 50%;
+}
+
+.topbar-link:hover::before {
+  width: 180%;
+  height: 180%;
 }
 
 .topbar-link:hover::after {
-  width: 120%;
+  transform: scaleX(1);
 }
 
 .topbar-link:hover {
   color: var(--clr-gold-light);
-  text-shadow: 0 0 15px rgba(212, 168, 83, 0.35);
+  text-shadow:
+    0 0 8px rgba(212, 168, 83, 0.6),
+    0 0 20px rgba(212, 168, 83, 0.2);
+  letter-spacing: 4px;
 }
 
 /* Active page link style */
 .topbar-link--active {
   color: var(--clr-gold-light);
+  text-shadow: 0 0 10px rgba(212, 168, 83, 0.5);
 }
 
 .topbar-link--active::after {
-  width: 120%;
+  transform: scaleX(1);
 }
 
 .topbar-link--cta {
-  padding: 0.4rem 1.2rem;
-  border: 1px solid rgba(212, 168, 83, 0.35);
-  border-radius: 2px;
+  padding: 0.55rem 1.8rem;
+  border: 2px solid var(--clr-gold);
+  clip-path: polygon(
+    8% 0%, 92% 0%, 100% 30%, 100% 70%, 92% 100%, 8% 100%, 0% 70%, 0% 30%
+  );
+  background:
+    linear-gradient(135deg, rgba(139, 26, 26, 0.3) 0%, transparent 50%, rgba(139, 26, 26, 0.3) 100%),
+    linear-gradient(180deg, rgba(212, 168, 83, 0.08), transparent);
   color: var(--clr-gold);
-  transition: all 0.35s var(--ease);
+  transition: all 0.4s var(--ease);
   position: relative;
   overflow: hidden;
+  letter-spacing: 3px;
 }
 
 .topbar-link--cta::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
+  left: -120%;
+  width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.12), transparent);
-  transition: left 0.5s var(--ease);
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(240, 212, 138, 0.3) 50%,
+    transparent 100%
+  );
+  animation: ctaSweep 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.topbar-link--cta:hover::before {
-  left: 100%;
+@keyframes ctaSweep {
+  0%   { left: -120%; }
+  100% { left: 120%; }
 }
 
 .topbar-link--cta::after {
@@ -183,60 +274,64 @@ img { max-width: 100%; display: block; }
 }
 
 .topbar-link--cta:hover {
-  background: rgba(212, 168, 83, 0.08);
-  border-color: var(--clr-gold);
+  background:
+    linear-gradient(135deg, rgba(212, 168, 83, 0.25) 0%, rgba(139, 26, 26, 0.4) 50%, rgba(212, 168, 83, 0.25) 100%);
   box-shadow:
-    0 0 20px rgba(212, 168, 83, 0.12),
-    inset 0 0 15px rgba(212, 168, 83, 0.05);
+    0 0 30px rgba(212, 168, 83, 0.3),
+    0 0 60px rgba(212, 168, 83, 0.1),
+    inset 0 0 20px rgba(212, 168, 83, 0.15);
   color: var(--clr-gold-light);
+  text-shadow: 0 0 15px rgba(212, 168, 83, 0.7);
+  border-color: var(--clr-gold-light);
+  letter-spacing: 4px;
 }
 
 .topbar-brand {
-  font-family: var(--ff-heading);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 5px;
+  font-family: 'Cinzel Decorative', var(--ff-heading);
+  font-size: 1.6rem; 
+  font-weight: 700;
+  letter-spacing: 4px;
   text-transform: uppercase;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   transition: all 0.4s var(--ease);
+  position: relative;
   padding: 0.2rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .brand-text {
   background: linear-gradient(
-    to right,
-    #B88A32 0%, #D4A853 25%, #F0D48A 50%, #D4A853 75%, #B88A32 100%
+    to bottom,
+    #F0D48A 0%,
+    #D4A853 50%,
+    #B88A32 100%
   );
-  background-size: 200% 100%;
+  background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: brandTextShimmer 8s ease-in-out infinite;
-}
-
-@keyframes brandTextShimmer {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 200% center; }
+  filter: drop-shadow(0 0 5px rgba(212, 168, 83, 0.4));
+  animation: none; /* Removed shimmer for cleaner look */
 }
 
 .brand-ornament {
-  font-size: 0.55rem;
+  font-size: 1.2rem;
   color: var(--clr-gold);
-  opacity: 0.35;
+  opacity: 0.6;
   letter-spacing: 1px;
 }
 
 .brand-icon {
-  font-size: 1.1rem;
-  background: linear-gradient(180deg, var(--clr-gold-light), var(--clr-gold));
+  font-size: 2.2rem;
+  background: linear-gradient(180deg, #FFE8B0, #D4A853, #B88A32);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 0 12px rgba(212, 168, 83, 0.6));
   animation: brandPulse 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.3));
 }
 
 .brand-icon:last-of-type {
@@ -248,37 +343,53 @@ img { max-width: 100%; display: block; }
   50% { opacity: 1; transform: scale(1.15); }
 }
 
+/* ═══ Bottom Ornamental Line ═══ */
 .topbar-line {
   width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(212, 168, 83, 0.1) 10%,
-    var(--clr-gold) 35%,
-    var(--clr-gold-light) 50%,
-    var(--clr-gold) 65%,
-    rgba(212, 168, 83, 0.1) 90%,
-    transparent 100%
-  );
-  opacity: 0.35;
+  height: 4px;
   position: relative;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0px,
+      var(--clr-gold) 0px, var(--clr-gold) 1px,
+      transparent 1px, transparent 3px,
+      var(--clr-gold) 3px, var(--clr-gold) 4px
+    );
+  opacity: 0.45;
+  mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
   animation: lineShimmer 5s ease-in-out infinite;
 }
 
 .topbar-line::after {
-  content: '';
+  content: '壽';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 4px;
-  height: 4px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--clr-gold-light);
-  box-shadow: 0 0 8px var(--clr-gold), 0 0 16px rgba(212, 168, 83, 0.4);
-  opacity: 0.7;
-  animation: dotPulse 3s ease-in-out infinite;
+  background: linear-gradient(135deg, #2E0808, #1A0505);
+  border: 1.5px solid var(--clr-gold);
+  color: var(--clr-gold-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 10px rgba(212, 168, 83, 0.5),
+    inset 0 0 4px rgba(212, 168, 83, 0.2);
+  opacity: 1;
+  animation: gemPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes gemPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(212,168,83,0.4); transform: translate(-50%,-50%) scale(1); }
+  50% { box-shadow: 0 0 18px rgba(212,168,83,0.8), 0 0 30px rgba(212,168,83,0.3); transform: translate(-50%,-50%) scale(1.1); }
 }
 
 @keyframes dotPulse {
@@ -297,7 +408,7 @@ img { max-width: 100%; display: block; }
 
 .page-hero {
   padding-top: 10rem;
-  padding-bottom: 4rem;
+  padding-bottom: 5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -310,34 +421,64 @@ img { max-width: 100%; display: block; }
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(212, 168, 83, 0.06) 0%, transparent 70%);
+  background:
+    /* Central golden mist aura */
+    radial-gradient(ellipse 55% 45% at 50% 50%, rgba(212, 168, 83, 0.1) 0%, transparent 100%),
+    /* Crimson ink wash corner clouds */
+    radial-gradient(ellipse 200px 150px at 0% 0%, rgba(139, 26, 26, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 200px 150px at 100% 0%, rgba(139, 26, 26, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 180px 100px at 0% 100%, rgba(139, 26, 26, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 180px 100px at 100% 100%, rgba(139, 26, 26, 0.06) 0%, transparent 70%),
+    /* Ink-wash mountain silhouette at bottom */
+    radial-gradient(ellipse 80% 20% at 30% 100%, rgba(26, 10, 10, 0.2) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 15% at 70% 100%, rgba(26, 10, 10, 0.15) 0%, transparent 100%);
   pointer-events: none;
+}
+
+/* Giant Chinese watermark character behind hero */
+.page-hero::after {
+  content: '龍';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(12rem, 25vw, 22rem);
+  font-weight: 900;
+  color: rgba(212, 168, 83, 0.02);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
 }
 
 .page-title {
   font-family: var(--ff-display);
   font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 4px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 6px;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  position: relative;
   background: linear-gradient(
     105deg,
-    #B88A32 0%, #D4A853 20%, #F0D48A 40%,
-    #FFE8B0 50%, #F0D48A 60%, #D4A853 80%, #B88A32 100%
+    #8B6914 0%, #B88A32 15%, #D4A853 30%,
+    #F0D48A 42%, #FFF5D6 50%, #F0D48A 58%,
+    #D4A853 70%, #B88A32 85%, #8B6914 100%
   );
-  background-size: 200% 100%;
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 20px rgba(212, 168, 83, 0.35));
-  animation: headingShimmer 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px rgba(212, 168, 83, 0.4))
+          drop-shadow(0 4px 30px rgba(0, 0, 0, 0.6));
+  animation: headingShimmer 5s ease-in-out infinite;
+  -webkit-text-stroke: 0.3px rgba(139, 26, 26, 0.15);
 }
 
 @keyframes headingShimmer {
-  0%, 100% { background-position: 200% center; }
-  50% { background-position: -200% center; }
+  0%, 100% { background-position: 250% center; }
+  50% { background-position: -250% center; }
 }
 
 .page-subtitle {
@@ -345,31 +486,64 @@ img { max-width: 100%; display: block; }
   font-size: 1.1rem;
   font-style: italic;
   color: var(--clr-text-muted);
-  letter-spacing: 2px;
-  max-width: 600px;
+  letter-spacing: 2.5px;
+  max-width: 620px;
   margin: 0 auto;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
 }
 
-/* Decorative divider */
+/* Poetic framing marks */
+.page-subtitle::before {
+  content: '「';
+  font-family: 'Noto Serif SC', serif;
+  margin-right: 0.3rem;
+  color: rgba(212, 168, 83, 0.3);
+  font-size: 1.3em;
+  font-style: normal;
+}
+
+.page-subtitle::after {
+  content: '」';
+  font-family: 'Noto Serif SC', serif;
+  margin-left: 0.3rem;
+  color: rgba(212, 168, 83, 0.3);
+  font-size: 1.3em;
+  font-style: normal;
+}
+
+/* Decorative divider — Imperial Brush Stroke Ornament */
 .ornament-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem auto;
-  max-width: 300px;
+  margin: 2.5rem auto;
+  max-width: 380px;
   color: var(--clr-gold);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  opacity: 0.5;
+  font-size: 0.8rem;
+  letter-spacing: 5px;
+  opacity: 0.65;
+  font-family: 'Noto Serif SC', serif;
+  position: relative;
+  z-index: 1;
 }
 
 .ornament-divider::before,
 .ornament-divider::after {
   content: '';
   flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+  height: 2px;
+  border-radius: 50%;
+}
+
+.ornament-divider::before {
+  background: linear-gradient(90deg, transparent, rgba(139, 26, 26, 0.4), var(--clr-gold), rgba(212, 168, 83, 0.9));
+}
+
+.ornament-divider::after {
+  background: linear-gradient(90deg, rgba(212, 168, 83, 0.9), var(--clr-gold), rgba(139, 26, 26, 0.4), transparent);
 }
 
 /* ==========================================================================
@@ -389,20 +563,59 @@ img { max-width: 100%; display: block; }
 .section-title {
   font-family: var(--ff-display);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 3px;
+  font-weight: 900;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--clr-gold);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(212, 168, 83, 0.2);
+  margin-bottom: 0.8rem;
+  text-shadow:
+    0 0 20px rgba(212, 168, 83, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: inline-block;
+  padding: 0 2rem;
+}
+
+/* Brush-stroke underline */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--clr-red-dark) 20%,
+    var(--clr-gold) 50%,
+    var(--clr-red-dark) 80%,
+    transparent 100%
+  );
+  border-radius: 50%;
+}
+
+/* Side ornament dots */
+.section-title::before {
+  content: '• ❖ •';
+  position: absolute;
+  top: 50%;
+  left: -2.5rem;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  color: var(--clr-gold);
+  opacity: 0.6;
+  letter-spacing: 3px;
 }
 
 .section-subtitle {
   font-size: 0.75rem;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--clr-text-muted);
   margin-bottom: 2.5rem;
+  position: relative;
+  padding-top: 0.5rem;
 }
 
 /* ==========================================================================
@@ -410,17 +623,51 @@ img { max-width: 100%; display: block; }
    ========================================================================== */
 
 .card {
-  background: rgba(10, 5, 5, 0.6);
-  border: 1px solid rgba(212, 168, 83, 0.1);
-  border-left: 3px solid var(--clr-gold);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 1.5rem 2rem;
+  /* Imperial dark lacquer base with 花窗 lattice texture */
+  background-color: rgba(18, 4, 4, 0.97);
+  background-image:
+    /* Subtle Chinese lattice overlay */
+    repeating-linear-gradient(0deg, rgba(212,168,83,0.03) 0px, rgba(212,168,83,0.03) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(212,168,83,0.03) 0px, rgba(212,168,83,0.03) 1px, transparent 1px, transparent 24px),
+    /* Silk weave micro-texture */
+    repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(212,168,83,0.01) 8px, rgba(212,168,83,0.01) 9px);
+
+  /* Double-border frame — outer gold, inner dark */
+  border: 2px solid rgba(212, 168, 83, 0.35);
+  outline: 3px solid rgba(139, 26, 26, 0.35);
+  outline-offset: 3px;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 1.8rem 1.5rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s var(--ease);
+  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(212, 168, 83, 0.1);
 }
 
+/* ══ Top-right corner: Chinese knot ornament ══ */
+.card::after {
+  content: '❖';
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 0.9rem;
+  color: var(--clr-gold);
+  opacity: 0.2;
+  transition: all 0.4s ease;
+}
+
+.card:hover::after {
+  opacity: 0.7;
+  transform: rotate(90deg) scale(1.2);
+  text-shadow: 0 0 8px rgba(212, 168, 83, 0.5);
+}
+
+/* ══ Gold shimmer sweep on hover ══ */
 .card::before {
   content: '';
   position: absolute;
@@ -428,9 +675,17 @@ img { max-width: 100%; display: block; }
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.04), transparent);
-  transition: left 0.6s var(--ease);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 168, 83, 0.06) 30%,
+    rgba(212, 168, 83, 0.12) 50%,
+    rgba(212, 168, 83, 0.06) 70%,
+    transparent 100%
+  );
+  transition: left 0.7s var(--ease);
   pointer-events: none;
+  z-index: 2;
 }
 
 .card:hover::before {
@@ -438,9 +693,13 @@ img { max-width: 100%; display: block; }
 }
 
 .card:hover {
-  border-color: rgba(212, 168, 83, 0.25);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 168, 83, 0.05);
-  transform: translateY(-2px);
+  border-color: rgba(212, 168, 83, 0.55);
+  outline-color: rgba(139, 26, 26, 0.6);
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(212, 168, 83, 0.08),
+    inset 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) scale(1.01);
 }
 
 /* ==========================================================================
@@ -448,29 +707,57 @@ img { max-width: 100%; display: block; }
    ========================================================================== */
 
 .menu-category {
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+/* Category header decoration */
+.menu-category::before {
+  content: '✦ ✦ ✦';
+  position: absolute;
+  top: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  color: var(--clr-gold);
+  opacity: 0.4;
+  letter-spacing: 8px;
 }
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2rem;
 }
 
 .menu-item {
   display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
+  gap: 1.5rem;
+  align-items: center; /* Center vertically for better balance */
 }
 
 .menu-item-img {
-  width: 80px;
-  height: 80px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid rgba(212, 168, 83, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  /* Double border: gold + dark gap */
+  border: 3px solid var(--clr-gold);
+  padding: 3px;
+  background: var(--clr-bg);
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(139, 26, 26, 0.3),
+    0 0 15px rgba(212, 168, 83, 0.08);
+  transition: all 0.45s var(--ease);
+}
+
+.card:hover .menu-item-img {
+  transform: rotate(3deg) scale(1.08);
+  box-shadow:
+    0 6px 25px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(212, 168, 83, 0.15);
 }
 
 .menu-item-info {
@@ -480,42 +767,64 @@ img { max-width: 100%; display: block; }
 .menu-item-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.3rem;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+  /* Elegant brush-stroke divider */
+  border-bottom: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 168, 83, 0.25) 15%,
+    rgba(212, 168, 83, 0.35) 50%,
+    rgba(212, 168, 83, 0.25) 85%,
+    transparent 100%
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 .menu-item-name {
-  font-family: var(--ff-heading);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--clr-white);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-gold-light);
+  display: block;
+  margin-bottom: 0.2rem;
 }
 
 .menu-item-chinese {
-  font-size: 0.75rem;
-  color: var(--clr-gold);
-  opacity: 0.7;
+  font-family: "Noto Serif SC", serif; /* Use serif for Chinese */
+  font-size: 0.9rem;
+  color: var(--clr-red);
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 .menu-item-price {
-  font-family: var(--ff-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--clr-gold-light);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-gold);
   white-space: nowrap;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .menu-item-desc {
-  font-size: 0.85rem;
-  color: var(--clr-text-muted);
-  line-height: 1.5;
+  font-family: var(--ff-heading); /* Serif font for description looks more elegant */
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(245, 230, 208, 0.7);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
 }
 
 .menu-item-tags {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
   flex-wrap: wrap;
 }
 
@@ -523,20 +832,36 @@ img { max-width: 100%; display: block; }
   font-size: 0.6rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 0.15rem 0.6rem;
-  border: 1px solid rgba(212, 168, 83, 0.2);
+  font-weight: 600;
+  padding: 0.25rem 0.9rem;
+  border: 1px solid rgba(212, 168, 83, 0.3);
   color: var(--clr-gold);
-  border-radius: 1px;
+  /* Chinese seal stamp shape */
+  border-radius: 2px;
+  background: rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tag:hover {
+  background: rgba(212, 168, 83, 0.12);
+  border-color: var(--clr-gold-light);
+  box-shadow: 0 0 8px rgba(212, 168, 83, 0.15);
+  transform: translateY(-1px);
 }
 
 .tag--spicy {
-  border-color: rgba(196, 30, 30, 0.4);
-  color: var(--clr-red);
+  border-color: rgba(196, 30, 30, 0.5);
+  color: #ff6b6b;
+  background: rgba(80, 10, 10, 0.35);
+  box-shadow: inset 0 0 6px rgba(196, 30, 30, 0.1);
 }
 
 .tag--popular {
-  border-color: rgba(212, 168, 83, 0.4);
-  background: rgba(212, 168, 83, 0.08);
+  border-color: rgba(212, 168, 83, 0.5);
+  background: rgba(60, 40, 10, 0.35);
+  color: #fbdb96;
+  box-shadow: inset 0 0 6px rgba(212, 168, 83, 0.1);
 }
 
 /* ==========================================================================
@@ -551,47 +876,103 @@ img { max-width: 100%; display: block; }
   margin-bottom: 4rem;
 }
 
+.about-text {
+  position: relative;
+}
+
+/* Xuan rice-paper background for text block */
+.about-text::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem;
+  background:
+    /* ink-wash mist wisps */
+    radial-gradient(ellipse 120px 60px at 10% 20%, rgba(212, 168, 83, 0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 100px 50px at 90% 80%, rgba(139, 26, 26, 0.04) 0%, transparent 100%),
+    rgba(10, 5, 5, 0.25);
+  border: 1px solid rgba(212, 168, 83, 0.06);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .about-text p {
   font-family: var(--ff-heading);
   font-size: 1.05rem;
   font-style: italic;
-  line-height: 1.8;
-  color: var(--clr-text);
+  line-height: 1.9;
+  color: #c9b99a;
   margin-bottom: 1.5rem;
+  text-indent: 0.5rem;
 }
 
 .about-text p:first-child::first-letter {
-  font-family: var(--ff-display);
-  font-size: 3.5rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 4rem;
   float: left;
   line-height: 1;
-  margin-right: 0.5rem;
-  color: var(--clr-gold);
+  margin-right: 0.6rem;
+  margin-top: 0.1rem;
+  color: transparent;
+  background: linear-gradient(135deg, #D4A853, #fbdb96, #D4A853);
+  -webkit-background-clip: text;
+  background-clip: text;
   font-style: normal;
+  font-weight: 900;
+  filter: drop-shadow(0 2px 8px rgba(212, 168, 83, 0.3));
 }
 
+/* Traditional Chinese hanging scroll image frame */
 .about-image-wrapper {
   position: relative;
-  border: 1px solid rgba(212, 168, 83, 0.15);
-  padding: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(60, 30, 10, 0.5), rgba(30, 15, 5, 0.6));
+  border: 2px solid rgba(212, 168, 83, 0.2);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    inset 0 0 30px rgba(212, 168, 83, 0.03);
 }
 
+/* Outer ornamental frame */
 .about-image-wrapper::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border: 1px solid rgba(212, 168, 83, 0.08);
+  inset: -6px;
+  border: 1px solid rgba(212, 168, 83, 0.12);
   pointer-events: none;
+}
+
+/* L-bracket corner ornaments */
+.about-image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(212, 168, 83, 0.1);
+  pointer-events: none;
+  clip-path: polygon(
+    /* top-left L */
+    0 0, 20% 0, 20% 2%, 2% 2%, 2% 20%, 0 20%,
+    /* top-right L */
+    80% 0, 100% 0, 100% 20%, 98% 20%, 98% 2%, 80% 2%,
+    /* bottom-right L */
+    100% 80%, 100% 100%, 80% 100%, 80% 98%, 98% 98%, 98% 80%,
+    /* bottom-left L */
+    0 80%, 2% 80%, 2% 98%, 20% 98%, 20% 100%, 0 100%
+  );
 }
 
 .about-img {
   width: 100%;
   height: 400px;
   object-fit: cover;
-  filter: sepia(0.15) contrast(1.05);
+  filter: sepia(0.2) contrast(1.08) saturate(0.9);
+  transition: filter 0.5s ease;
 }
 
-/* Stats row */
+.about-image-wrapper:hover .about-img {
+  filter: sepia(0.08) contrast(1.1) saturate(1);
+}
+
+/* Stats row — Imperial Jade Seal Cards */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -601,13 +982,33 @@ img { max-width: 100%; display: block; }
 
 .stat-card {
   text-align: center;
-  padding: 2rem 1rem;
-  background: rgba(10, 5, 5, 0.5);
-  border: 1px solid rgba(212, 168, 83, 0.1);
+  padding: 2.2rem 1rem;
+  background:
+    /* Silk cross-hatch micro texture */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0, transparent 8px,
+      rgba(212, 168, 83, 0.01) 8px, rgba(212, 168, 83, 0.01) 9px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0, transparent 8px,
+      rgba(212, 168, 83, 0.01) 8px, rgba(212, 168, 83, 0.01) 9px
+    ),
+    rgba(10, 5, 5, 0.6);
+  border: 1px solid rgba(212, 168, 83, 0.15);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s ease;
 }
 
+.stat-card:hover {
+  border-color: rgba(212, 168, 83, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 168, 83, 0.05);
+}
+
+/* Gold shimmer bottom bar */
 .stat-card::after {
   content: '';
   position: absolute;
@@ -615,18 +1016,37 @@ img { max-width: 100%; display: block; }
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
-  opacity: 0.4;
+  background: linear-gradient(90deg, transparent, rgba(139, 26, 26, 0.4), var(--clr-gold), rgba(139, 26, 26, 0.4), transparent);
+  opacity: 0.5;
+}
+
+/* Chinese seal stamp watermark in each stat card */
+.stat-card::before {
+  content: '壽';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(139, 26, 26, 0.04);
+  pointer-events: none;
 }
 
 .stat-number {
   font-family: var(--ff-display);
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--clr-gold-light);
+  color: transparent;
+  background: linear-gradient(135deg, #fbdb96, #D4A853, #fbdb96);
+  -webkit-background-clip: text;
+  background-clip: text;
   line-height: 1;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px rgba(212, 168, 83, 0.3);
+  filter: drop-shadow(0 0 15px rgba(212, 168, 83, 0.25));
+  position: relative;
+  z-index: 1;
 }
 
 .stat-label {
@@ -634,9 +1054,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--clr-text-muted);
+  position: relative;
+  z-index: 1;
 }
 
-/* Team section */
+/* Team section — Traditional Porcelain Portrait Cards */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -645,16 +1067,58 @@ img { max-width: 100%; display: block; }
 
 .team-card {
   text-align: center;
-  padding: 2rem;
-  background: rgba(10, 5, 5, 0.4);
-  border: 1px solid rgba(212, 168, 83, 0.08);
+  padding: 2.5rem 2rem;
+  background:
+    /* Faint lattice window pattern */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0, transparent 40px,
+      rgba(212, 168, 83, 0.008) 40px, rgba(212, 168, 83, 0.008) 41px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0, transparent 40px,
+      rgba(212, 168, 83, 0.008) 40px, rgba(212, 168, 83, 0.008) 41px
+    ),
+    rgba(10, 5, 5, 0.5);
+  border: 1px solid rgba(212, 168, 83, 0.1);
   transition: all 0.4s var(--ease);
+  position: relative;
+}
+
+/* Gold corner ticks */
+.team-card::before,
+.team-card::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgba(212, 168, 83, 0.2);
+  border-style: solid;
+  transition: border-color 0.4s ease;
+}
+
+.team-card::before {
+  top: 8px;
+  left: 8px;
+  border-width: 1px 0 0 1px;
+}
+
+.team-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1px 1px 0;
 }
 
 .team-card:hover {
-  border-color: rgba(212, 168, 83, 0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(212, 168, 83, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.35), 0 0 25px rgba(212, 168, 83, 0.05);
+}
+
+.team-card:hover::before,
+.team-card:hover::after {
+  border-color: rgba(212, 168, 83, 0.4);
 }
 
 .team-avatar {
@@ -662,20 +1126,36 @@ img { max-width: 100%; display: block; }
   height: 120px;
   border-radius: 50%;
   margin: 0 auto 1.2rem;
-  background: linear-gradient(135deg, var(--clr-bg-alt), var(--clr-bg));
-  border: 2px solid rgba(212, 168, 83, 0.2);
+  background:
+    radial-gradient(circle, rgba(212, 168, 83, 0.06) 0%, transparent 70%),
+    linear-gradient(135deg, var(--clr-bg-alt), var(--clr-bg));
+  border: 2px solid rgba(212, 168, 83, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.5rem;
+  box-shadow:
+    0 0 0 4px rgba(10, 5, 5, 0.6),
+    0 0 0 5px rgba(212, 168, 83, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+}
+
+.team-card:hover .team-avatar {
+  border-color: rgba(212, 168, 83, 0.4);
+  box-shadow:
+    0 0 0 4px rgba(10, 5, 5, 0.6),
+    0 0 0 5px rgba(212, 168, 83, 0.15),
+    0 0 25px rgba(212, 168, 83, 0.1);
 }
 
 .team-name {
   font-family: var(--ff-heading);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--clr-white);
   margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
 }
 
 .team-role {
@@ -684,12 +1164,14 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--clr-gold);
   margin-bottom: 0.8rem;
+  font-family: var(--ff-heading);
 }
 
 .team-bio {
   font-size: 0.85rem;
   color: var(--clr-text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-style: italic;
 }
 
 /* ==========================================================================
@@ -703,12 +1185,54 @@ img { max-width: 100%; display: block; }
   align-items: start;
 }
 
+/* Rice Paper Scroll Form Card */
 .form-card {
-  background: rgba(10, 5, 5, 0.6);
-  border: 1px solid rgba(212, 168, 83, 0.12);
+  background:
+    /* Ink-wash mist layers */
+    radial-gradient(ellipse 150px 80px at 20% 10%, rgba(212, 168, 83, 0.03) 0%, transparent 100%),
+    radial-gradient(ellipse 120px 60px at 80% 90%, rgba(139, 26, 26, 0.03) 0%, transparent 100%),
+    /* Rice paper base */
+    rgba(10, 5, 5, 0.65);
+  border: 1px solid rgba(212, 168, 83, 0.15);
   padding: 2.5rem;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scroll ornament top bar */
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 26, 26, 0.3),
+    var(--clr-gold),
+    rgba(139, 26, 26, 0.3),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* L-bracket corner ornaments */
+.form-card::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 168, 83, 0.06);
+  pointer-events: none;
+  clip-path: polygon(
+    0 0, 15% 0, 15% 2%, 2% 2%, 2% 15%, 0 15%,
+    85% 0, 100% 0, 100% 15%, 98% 15%, 98% 2%, 85% 2%,
+    100% 85%, 100% 100%, 85% 100%, 85% 98%, 98% 98%, 98% 85%,
+    0 85%, 2% 85%, 2% 98%, 15% 98%, 15% 100%, 0 100%
+  );
 }
 
 .form-group {
@@ -723,19 +1247,35 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--clr-gold);
   margin-bottom: 0.5rem;
+  font-family: var(--ff-heading);
+  position: relative;
+  padding-left: 0.8rem;
+}
+
+/* Ink brush stroke accent before labels */
+.form-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--clr-gold), rgba(139, 26, 26, 0.5));
+  border-radius: 2px;
 }
 
 .form-input,
 .form-select,
 .form-textarea {
   width: 100%;
-  padding: 0.8rem 1rem;
-  background: rgba(26, 10, 10, 0.8);
-  border: 1px solid rgba(212, 168, 83, 0.15);
+  padding: 0.85rem 1rem;
+  background: rgba(26, 10, 10, 0.85);
+  border: 1px solid rgba(212, 168, 83, 0.12);
   color: var(--clr-text);
   font-family: var(--ff-body);
   font-size: 0.9rem;
-  transition: all 0.3s var(--ease);
+  transition: all 0.4s var(--ease);
   outline: none;
 }
 
@@ -743,7 +1283,11 @@ img { max-width: 100%; display: block; }
 .form-select:focus,
 .form-textarea:focus {
   border-color: var(--clr-gold);
-  box-shadow: 0 0 15px rgba(212, 168, 83, 0.1), inset 0 0 10px rgba(212, 168, 83, 0.03);
+  box-shadow:
+    0 0 20px rgba(212, 168, 83, 0.12),
+    0 0 0 3px rgba(212, 168, 83, 0.04),
+    inset 0 0 12px rgba(212, 168, 83, 0.03);
+  background: rgba(26, 10, 10, 0.95);
 }
 
 .form-select {
@@ -765,10 +1309,11 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
 }
 
+/* Imperial Seal Button */
 .btn {
   display: inline-block;
   padding: 0.9rem 2.5rem;
-  font-family: var(--ff-body);
+  font-family: var(--ff-heading);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -781,9 +1326,16 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--clr-gold), #B88A32);
+  background: linear-gradient(135deg, #D4A853, #B88A32, #D4A853);
   color: var(--clr-black);
   box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+  /* Octagonal jade seal clip-path */
+  clip-path: polygon(
+    6% 0%, 94% 0%,
+    100% 6%, 100% 94%,
+    94% 100%, 6% 100%,
+    0% 94%, 0% 6%
+  );
 }
 
 .btn-gold::before {
@@ -793,8 +1345,8 @@ img { max-width: 100%; display: block; }
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s var(--ease);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s var(--ease);
 }
 
 .btn-gold:hover::before {
@@ -803,27 +1355,73 @@ img { max-width: 100%; display: block; }
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 168, 83, 0.4);
+  box-shadow: 0 8px 35px rgba(212, 168, 83, 0.45);
+  letter-spacing: 4px;
 }
 
 .btn-outline {
   background: transparent;
   color: var(--clr-gold);
   border: 1px solid rgba(212, 168, 83, 0.35);
+  clip-path: polygon(
+    4% 0%, 96% 0%,
+    100% 4%, 100% 96%,
+    96% 100%, 4% 100%,
+    0% 96%, 0% 4%
+  );
 }
 
 .btn-outline:hover {
-  background: rgba(212, 168, 83, 0.08);
+  background: rgba(212, 168, 83, 0.1);
   border-color: var(--clr-gold);
-  box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
+  box-shadow: 0 0 25px rgba(212, 168, 83, 0.12);
+  letter-spacing: 3.5px;
 }
 
-/* Reservation info sidebar */
+/* Silk Panel Sidebar */
+.reservation-info {
+  position: relative;
+}
+
+.reservation-info::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    /* Faint silk diamond weave */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0, transparent 20px,
+      rgba(212, 168, 83, 0.01) 20px, rgba(212, 168, 83, 0.01) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0, transparent 20px,
+      rgba(212, 168, 83, 0.01) 20px, rgba(212, 168, 83, 0.01) 21px
+    ),
+    rgba(10, 5, 5, 0.3);
+  border: 1px solid rgba(212, 168, 83, 0.08);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .reservation-info h3 {
   font-family: var(--ff-heading);
   font-size: 1.3rem;
   color: var(--clr-white);
   margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.reservation-info h3::after {
+  content: '━━ ✦ ━━';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: rgba(212, 168, 83, 0.3);
 }
 
 .info-list {
@@ -833,10 +1431,16 @@ img { max-width: 100%; display: block; }
 
 .info-list li {
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(212, 168, 83, 0.08);
+  border-bottom: 1px solid rgba(212, 168, 83, 0.06);
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.info-list li:hover {
+  padding-left: 0.3rem;
+  border-bottom-color: rgba(212, 168, 83, 0.12);
 }
 
 .info-list li:last-child {
@@ -884,7 +1488,7 @@ img { max-width: 100%; display: block; }
 }
 
 .filter-btn {
-  padding: 0.5rem 1.2rem;
+  padding: 0.55rem 1.3rem;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 2px;
@@ -894,13 +1498,22 @@ img { max-width: 100%; display: block; }
   color: var(--clr-text-muted);
   cursor: pointer;
   transition: all 0.3s var(--ease);
+  font-family: var(--ff-heading);
+  /* Subtle Chinese seal shape */
+  clip-path: polygon(
+    4% 0%, 96% 0%,
+    100% 4%, 100% 96%,
+    96% 100%, 4% 100%,
+    0% 96%, 0% 4%
+  );
 }
 
 .filter-btn:hover,
 .filter-btn--active {
-  background: rgba(212, 168, 83, 0.1);
+  background: rgba(212, 168, 83, 0.12);
   border-color: var(--clr-gold);
   color: var(--clr-gold);
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.08);
 }
 
 .order-grid {
@@ -910,27 +1523,81 @@ img { max-width: 100%; display: block; }
   margin-bottom: 4rem;
 }
 
+/* Lacquer Frame Order Cards */
 .order-card {
-  background: rgba(10, 5, 5, 0.6);
-  border: 1px solid rgba(212, 168, 83, 0.08);
+  background:
+    /* Silk cross-hatch micro texture */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0, transparent 15px,
+      rgba(212, 168, 83, 0.006) 15px, rgba(212, 168, 83, 0.006) 16px
+    ),
+    rgba(10, 5, 5, 0.65);
+  border: 1px solid rgba(212, 168, 83, 0.1);
   overflow: hidden;
   transition: all 0.4s var(--ease);
+  position: relative;
+}
+
+/* Crimson accent top border */
+.order-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139, 26, 26, 0.5), var(--clr-gold), rgba(139, 26, 26, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.order-card:hover::before {
+  opacity: 0.7;
 }
 
 .order-card:hover {
-  border-color: rgba(212, 168, 83, 0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(212, 168, 83, 0.05);
+  border-color: rgba(212, 168, 83, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.35), 0 0 30px rgba(212, 168, 83, 0.06);
 }
 
 .order-card-image {
   position: relative;
   height: 200px;
   overflow: hidden;
-  background: rgba(26, 10, 10, 0.8);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(26, 10, 10, 0.5), rgba(26, 10, 10, 0.9)),
+    rgba(26, 10, 10, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Red seal stamp corner ornament */
+.order-card-image::after {
+  content: '美';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: rgba(196, 30, 30, 0.6);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(196, 30, 30, 0.5);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.order-card:hover .order-card-image::after {
+  opacity: 1;
 }
 
 .order-card-img {
@@ -938,13 +1605,22 @@ img { max-width: 100%; display: block; }
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid rgba(212, 168, 83, 0.15);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  transition: transform 0.5s var(--ease);
+  border: 2px solid rgba(212, 168, 83, 0.2);
+  box-shadow:
+    0 0 0 4px rgba(10, 5, 5, 0.6),
+    0 0 0 5px rgba(212, 168, 83, 0.06),
+    0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s var(--ease);
 }
 
 .order-card:hover .order-card-img {
   transform: scale(1.08);
+  border-color: rgba(212, 168, 83, 0.35);
+  box-shadow:
+    0 0 0 4px rgba(10, 5, 5, 0.6),
+    0 0 0 5px rgba(212, 168, 83, 0.12),
+    0 0 20px rgba(212, 168, 83, 0.08),
+    0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .order-card-body {
@@ -957,13 +1633,15 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   color: var(--clr-white);
   margin-bottom: 0.2rem;
+  letter-spacing: 0.3px;
 }
 
 .order-card-chinese {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--clr-gold);
-  opacity: 0.6;
+  opacity: 0.5;
   margin-bottom: 0.5rem;
+  font-family: 'Noto Serif SC', serif;
 }
 
 .order-card-desc {
@@ -980,14 +1658,19 @@ img { max-width: 100%; display: block; }
 }
 
 .order-card-price {
-  font-family: var(--ff-heading);
+  font-family: var(--ff-display);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--clr-gold-light);
+  color: transparent;
+  background: linear-gradient(135deg, #fbdb96, #D4A853);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.2));
 }
 
+/* Imperial Add Button */
 .btn-add {
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 2px;
@@ -997,30 +1680,75 @@ img { max-width: 100%; display: block; }
   color: var(--clr-gold);
   cursor: pointer;
   transition: all 0.3s var(--ease);
+  font-family: var(--ff-heading);
+  /* Octagonal seal */
+  clip-path: polygon(
+    8% 0%, 92% 0%,
+    100% 8%, 100% 92%,
+    92% 100%, 8% 100%,
+    0% 92%, 0% 8%
+  );
 }
 
 .btn-add:hover {
-  background: var(--clr-gold);
+  background: linear-gradient(135deg, #D4A853, #B88A32);
   color: var(--clr-black);
-  box-shadow: 0 4px 15px rgba(212, 168, 83, 0.3);
+  box-shadow: 0 4px 18px rgba(212, 168, 83, 0.3);
+  border-color: transparent;
 }
 
-/* Order summary sidebar */
+/* Ornate Order Summary Sidebar */
 .order-summary {
-  background: rgba(10, 5, 5, 0.7);
-  border: 1px solid rgba(212, 168, 83, 0.12);
+  background:
+    /* Faint lattice window pattern */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0, transparent 30px,
+      rgba(212, 168, 83, 0.008) 30px, rgba(212, 168, 83, 0.008) 31px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0, transparent 30px,
+      rgba(212, 168, 83, 0.008) 30px, rgba(212, 168, 83, 0.008) 31px
+    ),
+    rgba(10, 5, 5, 0.75);
+  border: 1px solid rgba(212, 168, 83, 0.15);
   padding: 2rem;
   position: sticky;
   top: 6rem;
 }
 
+/* Gold top accent bar */
+.order-summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+  opacity: 0.5;
+}
+
 .order-summary h3 {
   font-family: var(--ff-display);
   font-size: 1.2rem;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   color: var(--clr-gold);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.order-summary h3::after {
+  content: '━━ ✦ ━━';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  color: rgba(212, 168, 83, 0.25);
 }
 
 .order-summary-empty {
@@ -1039,48 +1767,99 @@ img { max-width: 100%; display: block; }
 }
 
 /* ==========================================================================
-   FOOTER
+   FOOTER — Traditional Chinese Imperial Bar
    ========================================================================== */
 
 .footer {
-  background: rgba(10, 5, 5, 0.8);
-  border-top: 1px solid rgba(212, 168, 83, 0.1);
+  background:
+    /* Silk weave subtle texture */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0, transparent 20px,
+      rgba(212, 168, 83, 0.006) 20px, rgba(212, 168, 83, 0.006) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0, transparent 20px,
+      rgba(212, 168, 83, 0.006) 20px, rgba(212, 168, 83, 0.006) 21px
+    ),
+    rgba(10, 5, 5, 0.85);
+  border-top: 2px solid rgba(212, 168, 83, 0.15);
   padding: 3rem;
   text-align: center;
+  position: relative;
+}
+
+/* Gold meander pattern top border ornament */
+.footer::before {
+  content: '━━━ ✦ 龍 ✦ ━━━';
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: rgba(212, 168, 83, 0.3);
+  background: rgba(10, 5, 5, 1);
+  padding: 0 1.5rem;
 }
 
 .footer-brand {
   font-family: var(--ff-display);
-  font-size: 1.2rem;
-  letter-spacing: 5px;
-  color: var(--clr-gold);
+  font-size: 1.3rem;
+  letter-spacing: 6px;
+  color: transparent;
+  background: linear-gradient(135deg, #fbdb96, #D4A853, #fbdb96);
+  -webkit-background-clip: text;
+  background-clip: text;
   margin-bottom: 0.8rem;
   text-transform: uppercase;
+  filter: drop-shadow(0 0 10px rgba(212, 168, 83, 0.2));
 }
 
 .footer-text {
   font-size: 0.8rem;
   color: var(--clr-text-muted);
   margin-bottom: 0.3rem;
+  font-family: var(--ff-heading);
+  letter-spacing: 0.5px;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
   margin-top: 1.5rem;
 }
 
 .footer-link {
   font-size: 0.7rem;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--clr-text-muted);
-  transition: color 0.3s var(--ease);
+  transition: all 0.3s var(--ease);
+  font-family: var(--ff-heading);
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--clr-gold), rgba(139, 26, 26, 0.5));
+  transition: width 0.4s ease;
 }
 
 .footer-link:hover {
   color: var(--clr-gold-light);
+}
+
+.footer-link:hover::after {
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -1100,8 +1879,8 @@ img { max-width: 100%; display: block; }
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 168, 83, 0.8), rgba(212, 168, 83, 0));
-  box-shadow: 0 0 6px rgba(212, 168, 83, 0.3);
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.9), rgba(196, 30, 30, 0.3), rgba(212, 168, 83, 0));
+  box-shadow: 0 0 8px rgba(212, 168, 83, 0.3), 0 0 3px rgba(196, 30, 30, 0.15);
   opacity: 0;
   animation: particleFloat linear infinite;
 }
@@ -1123,14 +1902,77 @@ img { max-width: 100%; display: block; }
   100% { transform: translateY(-5vh) scale(0); opacity: 0; }
 }
 
-/* Vignette */
+/* Vignette — Deep Ink-Wash Atmosphere */
 .vignette {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(10, 5, 5, 0.4) 80%, rgba(10, 5, 5, 0.7) 100%);
+    /* Warm crimson tint in corners */
+    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(80, 10, 10, 0.15) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(80, 10, 10, 0.12) 0%, transparent 100%),
+    /* Deep ink-wash vignette */
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(10, 5, 5, 0.45) 75%, rgba(10, 5, 5, 0.8) 100%);
+}
+
+/* ==========================================================================
+   CHINESE ATMOSPHERE ANIMATIONS
+   ========================================================================== */
+
+/* Scroll-reveal fade-in for content sections */
+.about-grid,
+.stats-row,
+.team-grid,
+.form-card,
+.reservation-info,
+.order-grid,
+.order-summary {
+  animation: inkReveal 0.8s ease-out both;
+}
+
+@keyframes inkReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Staggered card reveals */
+.stat-card:nth-child(1) { animation: inkReveal 0.6s 0.1s ease-out both; }
+.stat-card:nth-child(2) { animation: inkReveal 0.6s 0.2s ease-out both; }
+.stat-card:nth-child(3) { animation: inkReveal 0.6s 0.3s ease-out both; }
+.stat-card:nth-child(4) { animation: inkReveal 0.6s 0.4s ease-out both; }
+
+.team-card:nth-child(1) { animation: inkReveal 0.6s 0.15s ease-out both; }
+.team-card:nth-child(2) { animation: inkReveal 0.6s 0.25s ease-out both; }
+.team-card:nth-child(3) { animation: inkReveal 0.6s 0.35s ease-out both; }
+.team-card:nth-child(4) { animation: inkReveal 0.6s 0.45s ease-out both; }
+
+/* Subtle golden shimmer on page title */
+@keyframes titleShimmer {
+  0%, 100% { text-shadow: 0 0 20px rgba(212, 168, 83, 0.1); }
+  50% { text-shadow: 0 0 35px rgba(212, 168, 83, 0.2), 0 0 60px rgba(212, 168, 83, 0.05); }
+}
+
+.page-title {
+  animation: titleShimmer 4s ease-in-out infinite;
+}
+
+/* Floating watermark drift animation */
+@keyframes watermarkDrift {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  50% { transform: translate(-50%, -52%) rotate(1deg); }
+}
+
+.page-hero::after {
+  animation: watermarkDrift 12s ease-in-out infinite;
 }
 
 /* ==========================================================================
