@@ -98,49 +98,73 @@ a { text-decoration: none; color: inherit; }
   left: 0;
   width: 100%;
   z-index: 1000;
-  /* Rich lacquer red/black gradient with subtle texture */
-  background: 
-    linear-gradient(180deg, rgba(30, 5, 5, 0.95) 0%, rgba(40, 10, 10, 0.85) 100%),
+
+  /* Imperial lacquer base — deep layered red-black */
+  background:
+    /* Faint cloud/auspicious pattern overlay */
+    radial-gradient(ellipse 60px 40px at 15% 60%, rgba(212,168,83,0.06) 0%, transparent 100%),
+    radial-gradient(ellipse 50px 35px at 45% 40%, rgba(212,168,83,0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 55px 38px at 75% 55%, rgba(212,168,83,0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 45px 30px at 90% 35%, rgba(212,168,83,0.04) 0%, transparent 100%),
+    /* Fine silk weave texture */
     repeating-linear-gradient(
-      45deg,
-      transparent 0,
-      transparent 10px,
-      rgba(212, 168, 83, 0.03) 10px,
-      rgba(212, 168, 83, 0.03) 11px
-    );
+      90deg,
+      transparent 0, transparent 2px,
+      rgba(212,168,83,0.015) 2px, rgba(212,168,83,0.015) 3px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0, transparent 2px,
+      rgba(212,168,83,0.015) 2px, rgba(212,168,83,0.015) 3px
+    ),
+    /* Deep lacquer gradient */
+    linear-gradient(180deg, #1E0808 0%, #280A0A 40%, #1A0505 100%);
+
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  
-  /* Ornate bottom border */
-  border-bottom: 2px solid var(--clr-gold);
-  border-image: linear-gradient(
-    90deg, 
-    transparent 0%, 
-    var(--clr-gold) 30%, 
-    #F0D48A 50%, 
-    var(--clr-gold) 70%, 
-    transparent 100%
-  ) 1;
-  
+
+  /* No border-bottom — we use the .topbar-line and keyline elements instead */
+  border-bottom: none;
+
   transition: all 0.4s var(--ease);
-  box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.6),
-    0 1px 0 rgba(212, 168, 83, 0.15) inset;
+  box-shadow:
+    0 6px 40px rgba(0, 0, 0, 0.9),
+    0 1px 0 rgba(212, 168, 83, 0.15) inset,
+    inset 0 -1px 0 rgba(212, 168, 83, 0.1);
 }
 
-/* Gold accent line at the very top of the page */
+/* ═══ Greek Key / 回紋 Meander Accent at top ═══ */
 .topbar-top-accent {
   width: 100%;
-  height: 3px;
-  background: repeating-linear-gradient(
+  height: 6px;
+  position: relative;
+  /* Greek key meander via repeating gradients */
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--clr-gold) 0px, var(--clr-gold) 6px,
+      transparent 6px, transparent 8px,
+      var(--clr-red-dark) 8px, var(--clr-red-dark) 14px,
+      transparent 14px, transparent 16px
+    );
+  opacity: 0.7;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+/* Second sub-accent line directly under for layered border look */
+.topbar-top-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
     90deg,
-    var(--clr-gold) 0,
-    var(--clr-gold) 10px,
-    transparent 10px,
-    transparent 20px
+    transparent 0%, var(--clr-gold) 20%, var(--clr-gold-light) 50%, var(--clr-gold) 80%, transparent 100%
   );
-  opacity: 0.4;
-  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+  opacity: 0.5;
 }
 
 .topbar-inner {
@@ -164,68 +188,116 @@ a { text-decoration: none; color: inherit; }
 }
 
 .topbar-link {
-  font-family: 'Cinzel Decorative', serif; /* More traditional/fantasy look */
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--clr-text-muted);
-  transition: all 0.35s var(--ease);
+  transition: all 0.4s var(--ease);
   position: relative;
-  padding: 0.3rem 0;
+  padding: 0.6rem 1.2rem;
+  overflow: hidden;
 }
 
+/* Ink-drop expanding background on hover */
+.topbar-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(139, 26, 26, 0.85) 0%,
+    rgba(139, 26, 26, 0.4) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s var(--ease), height 0.5s var(--ease);
+  z-index: -1;
+}
+
+/* Gold underline with calligraphy brush taper */
 .topbar-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 100%;
+  bottom: 2px;
+  left: 15%;
+  width: 70%;
   height: 2px;
-  background: var(--clr-gold);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--clr-gold) 15%,
+    var(--clr-gold-light) 50%,
+    var(--clr-gold) 85%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: center;
   transition: transform 0.4s var(--ease);
-  /* Brush stroke style ends */
-  border-radius: 50% 50% 50% 0; 
+  border-radius: 50%;
+}
+
+.topbar-link:hover::before {
+  width: 180%;
+  height: 180%;
 }
 
 .topbar-link:hover::after {
-  transform: translateX(-50%) scaleX(1);
+  transform: scaleX(1);
 }
 
 .topbar-link:hover {
   color: var(--clr-gold-light);
-  text-shadow: 0 0 15px rgba(212, 168, 83, 0.45);
+  text-shadow:
+    0 0 8px rgba(212, 168, 83, 0.6),
+    0 0 20px rgba(212, 168, 83, 0.2);
+  letter-spacing: 4px;
 }
 
+/* ═══ CTA Button — Chinese Window / 花窗 Frame Style ═══ */
 .topbar-link--cta {
-  padding: 0.5rem 1.5rem;
-  border: 1px solid var(--clr-gold);
-  background: linear-gradient(45deg, rgba(212, 168, 83, 0.1), transparent);
-  border-radius: 0;
+  padding: 0.55rem 1.8rem;
+  border: 2px solid var(--clr-gold);
+  /* Hexagonal / Chinese-window cut corners */
   clip-path: polygon(
-    0 0, 100% 0, 100% 80%, 92% 100%, 0 100%
-  ); /* Cut corner effect */
+    8% 0%, 92% 0%, 100% 30%, 100% 70%, 92% 100%, 8% 100%, 0% 70%, 0% 30%
+  );
+  background:
+    linear-gradient(135deg, rgba(139, 26, 26, 0.3) 0%, transparent 50%, rgba(139, 26, 26, 0.3) 100%),
+    linear-gradient(180deg, rgba(212, 168, 83, 0.08), transparent);
   color: var(--clr-gold);
-  transition: all 0.35s var(--ease);
+  transition: all 0.4s var(--ease);
   position: relative;
   overflow: hidden;
+  letter-spacing: 3px;
 }
 
-/* CTA shimmer sweep */
+/* Animated shimmer sweep */
 .topbar-link--cta::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
+  left: -120%;
+  width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.25), transparent);
-  transition: left 0.5s var(--ease);
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(240, 212, 138, 0.3) 50%,
+    transparent 100%
+  );
+  animation: ctaSweep 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.topbar-link--cta:hover::before {
-  left: 100%;
+@keyframes ctaSweep {
+  0%   { left: -120%; }
+  100% { left: 120%; }
 }
 
 .topbar-link--cta::after {
@@ -233,13 +305,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 .topbar-link--cta:hover {
-  background: rgba(212, 168, 83, 0.15);
-  box-shadow: 
-    0 0 25px rgba(212, 168, 83, 0.2),
-    inset 0 0 15px rgba(212, 168, 83, 0.1);
+  background:
+    linear-gradient(135deg, rgba(212, 168, 83, 0.25) 0%, rgba(139, 26, 26, 0.4) 50%, rgba(212, 168, 83, 0.25) 100%);
+  box-shadow:
+    0 0 30px rgba(212, 168, 83, 0.3),
+    0 0 60px rgba(212, 168, 83, 0.1),
+    inset 0 0 20px rgba(212, 168, 83, 0.15);
   color: var(--clr-gold-light);
-  text-shadow: 0 0 12px rgba(212, 168, 83, 0.5);
+  text-shadow: 0 0 15px rgba(212, 168, 83, 0.7);
   border-color: var(--clr-gold-light);
+  letter-spacing: 4px;
 }
 
 .topbar-brand {
@@ -289,12 +364,18 @@ a { text-decoration: none; color: inherit; }
 }
 
 .brand-icon {
-  font-size: 2rem; /* Much larger dragon icon */
-  background: linear-gradient(180deg, var(--clr-gold-light), var(--clr-gold));
+  font-size: 2.2rem;
+  background: linear-gradient(180deg, #FFE8B0, #D4A853, #B88A32);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.4));
+  filter: drop-shadow(0 0 12px rgba(212, 168, 83, 0.6));
+  animation: dragonPulse 3s ease-in-out infinite;
+}
+
+@keyframes dragonPulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 18px rgba(212, 168, 83, 0.8)); transform: scale(1.08); }
 }
 
 /* ======================== BRAND LAMP (Chinese Lantern) ======================== */
@@ -328,38 +409,55 @@ a { text-decoration: none; color: inherit; }
   50%      { transform: rotate(3deg); }
 }
 
+/* ═══ Bottom Ornamental Line — Double-line with center gem ═══ */
 .topbar-line {
   width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg, 
-    transparent 0%, 
-    rgba(212, 168, 83, 0.1) 10%,
-    var(--clr-gold) 35%, 
-    var(--clr-gold-light) 50%, 
-    var(--clr-gold) 65%, 
-    rgba(212, 168, 83, 0.1) 90%,
-    transparent 100%
-  );
-  opacity: 0.35;
+  height: 4px;
   position: relative;
+  /* Double gold line separated by dark gap */
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0px,
+      var(--clr-gold) 0px, var(--clr-gold) 1px,
+      transparent 1px, transparent 3px,
+      var(--clr-gold) 3px, var(--clr-gold) 4px
+    );
+  opacity: 0.45;
+  mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
   animation: lineShimmer 5s ease-in-out infinite;
 }
 
-/* Glowing dot at center of line */
+/* Center 壽 longevity gem ornament */
 .topbar-line::after {
-  content: '';
+  content: '壽';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 4px;
-  height: 4px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--clr-gold-light);
-  box-shadow: 0 0 8px var(--clr-gold), 0 0 16px rgba(212, 168, 83, 0.4);
-  opacity: 0.7;
-  animation: dotPulse 3s ease-in-out infinite;
+  background: linear-gradient(135deg, #2E0808, #1A0505);
+  border: 1.5px solid var(--clr-gold);
+  color: var(--clr-gold-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 10px rgba(212, 168, 83, 0.5),
+    inset 0 0 4px rgba(212, 168, 83, 0.2);
+  opacity: 1;
+  animation: gemPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes gemPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(212,168,83,0.4); transform: translate(-50%,-50%) scale(1); }
+  50% { box-shadow: 0 0 18px rgba(212,168,83,0.8), 0 0 30px rgba(212,168,83,0.3); transform: translate(-50%,-50%) scale(1.1); }
 }
 
 @keyframes dotPulse {
@@ -379,6 +477,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   padding-left: 3.5rem;
+  padding-top: 5rem;
 }
 
 /* ==========================================================================
@@ -685,48 +784,83 @@ a { text-decoration: none; color: inherit; }
 .main-heading {
   font-family: 'Cinzel Decorative', 'Chinese Shangai', serif;
   font-size: clamp(3.5rem, 8vw, 7.5rem);
-  font-weight: 700; 
-  line-height: 1.1;
-  letter-spacing: 2px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
   max-width: 65vw;
-  
-  /* Gold Gradient & Glow Effect */
-  color: var(--clr-gold);
+  position: relative;
+
+  /* Enhanced Imperial Gold Gradient */
   background: linear-gradient(
     105deg,
-    #B88A32 0%,
-    #D4A853 20%,
-    #F0D48A 40%,
-    #FFE8B0 50%,
-    #F0D48A 60%,
-    #D4A853 80%,
-    #B88A32 100%
+    #8B6914 0%,
+    #B88A32 15%,
+    #D4A853 30%,
+    #F0D48A 42%,
+    #FFF5D6 50%,
+    #F0D48A 58%,
+    #D4A853 70%,
+    #B88A32 85%,
+    #8B6914 100%
   );
-  background-size: 200% 100%;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 20px rgba(212, 168, 83, 0.35))
-          drop-shadow(0 4px 30px rgba(0, 0, 0, 0.5));
-  animation: headingShimmer 6s ease-in-out infinite;
+  /* Removed heavy drop-shadow that caused a dark box */
+  /* Added a subtle text-shadow for readability */
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  
+  /* Charming, elegant floating animation */
+  animation: titleCharm 6s ease-in-out infinite;
+  /* Ink texture overlay for calligraphic feel */
+  -webkit-text-stroke: 0.3px rgba(139, 26, 26, 0.2);
 }
 
-@keyframes headingShimmer {
-  0%, 100% { background-position: 200% center; }
-  50% { background-position: -200% center; }
+/* Decorative ornament under heading */
+.main-heading::after {
+  content: '── ❖ ──';
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 6px;
+  margin-top: 0.8rem;
+  color: var(--clr-gold);
+  opacity: 0.5;
+  filter: none;
+  -webkit-text-fill-color: var(--clr-gold);
+}
+
+@keyframes titleCharm {
+  0%, 100% { 
+    background-position: 0% center; 
+    transform: translateY(0);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    background-position: 100% center; 
+    transform: translateY(-5px);
+    text-shadow: 0 8px 25px rgba(212, 168, 83, 0.2), 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
 }
 
 /* ==========================================================================
-   INFO CARD — Traditional Chinese Scroll / Plaque Style (FLIPPABLE)
+   INFO CARD — Traditional Chinese Hanging Scroll / 掛軸 (FLIPPABLE)
    ========================================================================== */
 
 /* The flip container */
 .info-card-container {
-  max-width: 480px;
-  perspective: 1000px;
+  max-width: 500px;
+  perspective: 1200px;
   cursor: pointer;
+  /* Floating animation */
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 /* The flippable wrapper */
@@ -734,9 +868,7 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.8s var(--ease-bounce);
-  
-  /* Reset previous styles that conflict */
+  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: none;
   border: none;
   box-shadow: none;
@@ -751,42 +883,141 @@ a { text-decoration: none; color: inherit; }
   transform: rotateY(180deg);
 }
 
-/* Shared Face Styles */
+/* Shared Face Styles — 卷軸 (Hanging Scroll) with 水墨 (Water-Ink) Painting Aesthetic */
 .info-card-front,
 .info-card-back {
-  /* Deep, rich imperial aesthetic */
-  background: 
-    linear-gradient(to bottom, rgba(20, 5, 5, 0.96), rgba(10, 2, 2, 0.98)),
-    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSJyZ2JhKDIxMiwgMTY4LCA4MywgMC4wNSkiLz4KPC9zdmc+'); /* Subtle gold noise */
-    
-  border: 1px solid var(--clr-gold);
-  border-top: 4px solid var(--clr-red-dark);
-  border-bottom: 4px solid var(--clr-red-dark);
+  /* Aged xuan rice paper with ink-wash landscape wisps */
+  background-color: #f3e9cc;
+  background-image:
+    /* Misty mountain ink-wash layers */
+    radial-gradient(ellipse 120px 50px at 15% 85%, rgba(45, 30, 15, 0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 100px 60px at 80% 10%, rgba(45, 30, 15, 0.06) 0%, transparent 100%),
+    radial-gradient(ellipse 70px 35px at 50% 45%, rgba(45, 30, 15, 0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 90px 40px at 25% 20%, rgba(75, 50, 30, 0.03) 0%, transparent 100%),
+    radial-gradient(ellipse 60px 80px at 85% 70%, rgba(60, 40, 20, 0.04) 0%, transparent 100%),
+    /* Fine paper-fiber noise */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+
+  /* Triple-layer scroll frame: dark wood > gold inlay > inner dark */
+  border: none;
   border-radius: 2px;
-  
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 1.5rem;
-  
-  box-shadow: 
-    0 30px 80px rgba(0,0,0,0.9),
-    0 0 0 1px rgba(0,0,0,1),
-    inset 0 0 60px rgba(0,0,0,0.7);
+  outline: 12px solid #2f150a;
+  outline-offset: -12px;
+
+  box-shadow:
+    /* Inner gold inlay channel */
+    inset 0 0 0 14px #f3e9cc,
+    inset 0 0 0 16px var(--clr-gold),
+    inset 0 0 0 17px rgba(139, 26, 26, 0.4),
+    inset 0 0 0 19px #2f150a,
+    /* Inner warm glow */
+    inset 0 0 40px rgba(200, 165, 100, 0.08),
+    /* Depth & floating shadow */
+    0 20px 60px rgba(0, 0, 0, 0.9),
+    0 0 100px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    /* Subtle outer gold aura */
+    0 0 25px rgba(212, 168, 83, 0.08);
 
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  
-  /* Ensure a larger minimum height to fit both front and back content comfortably */
-  min-height: 380px;
+
+  min-height: 460px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  color: #1e0c02;
+  padding: 2.8rem 2.2rem;
+  position: relative;
+  /* Subtle parchment edge aging */
+  border-image: linear-gradient(
+    to bottom,
+    rgba(80, 50, 20, 0.15) 0%,
+    rgba(80, 50, 20, 0.05) 10%,
+    transparent 20%,
+    transparent 80%,
+    rgba(80, 50, 20, 0.05) 90%,
+    rgba(80, 50, 20, 0.15) 100%
+  ) 1;
 }
 
 .info-card-front {
   position: relative;
   z-index: 2;
 }
+
+/* ═══ Chinese Red Seal Stamp (印章) — Large & Prominent ═══ */
+.info-card-front::after {
+  content: '美\A味';
+  white-space: pre;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #cc0000 0%, #a80000 60%, #880000 100%);
+  color: #fff;
+  font-family: 'Noto Serif SC', 'SimSun', serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  line-height: 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 4px;
+  border: 3px solid rgba(180, 0, 0, 0.7);
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.4),
+    inset 0 0 2px rgba(255, 255, 255, 0.1),
+    3px 3px 10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(180, 0, 0, 0.15);
+  transform: rotate(-10deg);
+  opacity: 0.88;
+  pointer-events: none;
+  filter: contrast(1.2) saturate(1.4);
+  /* Aged stamp ink eroded edges */
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 1 1 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 1 1 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  transition: transform 0.4s ease;
+}
+
+.info-card-container:hover .info-card-front::after {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* ═══ Inner 回紋 (Greek Key Meander) border + corner calligraphy marks ═══ */
+.info-card-front::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: 20px; right: 20px; bottom: 20px;
+  /* Double inner border */
+  border: 1px solid rgba(58, 26, 10, 0.12);
+  outline: 1px solid rgba(58, 26, 10, 0.06);
+  outline-offset: 4px;
+  pointer-events: none;
+  /* Large decorative corner L-brackets + gold dots */
+  background:
+    /* Top-left L-bracket */
+    linear-gradient(to right, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 0 0 / 20px 1.5px no-repeat,
+    linear-gradient(to bottom, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 0 0 / 1.5px 20px no-repeat,
+    /* Top-right L-bracket */
+    linear-gradient(to left, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 100% 0 / 20px 1.5px no-repeat,
+    linear-gradient(to bottom, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 100% 0 / 1.5px 20px no-repeat,
+    /* Bottom-left L-bracket */
+    linear-gradient(to right, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 0 100% / 20px 1.5px no-repeat,
+    linear-gradient(to top, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 0 100% / 1.5px 20px no-repeat,
+    /* Bottom-right L-bracket */
+    linear-gradient(to left, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 100% 100% / 20px 1.5px no-repeat,
+    linear-gradient(to top, rgba(139, 26, 26, 0.35) 0, rgba(139, 26, 26, 0.35) 20px, transparent 20px) 100% 100% / 1.5px 20px no-repeat,
+    /* Gold corner dots */
+    radial-gradient(circle at 0% 0%, var(--clr-gold) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 100% 0%, var(--clr-gold) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 0% 100%, var(--clr-gold) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 100% 100%, var(--clr-gold) 2.5px, transparent 2.5px);
+}
+
 
 .info-card-back {
   position: absolute;
@@ -796,210 +1027,381 @@ a { text-decoration: none; color: inherit; }
   height: 100%;
   transform: rotateY(180deg);
   z-index: 1;
-}
-
-/* Corner Ornaments (Shared) */
-.info-card-front::before,
-.info-card-back::before {
-  content: '';
-  position: absolute;
-  top: 8px; left: 8px; right: 8px; bottom: 8px;
-  border: 1px solid rgba(212, 168, 83, 0.25);
-  pointer-events: none;
-  background: 
-    radial-gradient(circle at top left, var(--clr-red-dark) 0%, transparent 15%),
-    radial-gradient(circle at top right, var(--clr-red-dark) 0%, transparent 15%),
-    radial-gradient(circle at bottom left, var(--clr-red-dark) 0%, transparent 15%),
-    radial-gradient(circle at bottom right, var(--clr-red-dark) 0%, transparent 15%);
-}
-
-/* Subtle gold sweep (Only on front for performance/cleanliness) */
-.info-card-front::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(
-    110deg, 
-    transparent 40%, 
-    rgba(212, 168, 83, 0.05) 50%, 
-    transparent 60%
-  );
-  transform: skewX(-25deg);
-  animation: shineCard 10s infinite ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes shineCard {
-  0%, 20% { left: -150%; }
-  100% { left: 150%; }
+  /* Dark imperial reverse — deep lacquer with 花窗 lattice */
+  background-color: #120404;
+  background-image:
+    /* Central glowing aura */
+    radial-gradient(ellipse 50% 50% at 50% 40%, rgba(212, 168, 83, 0.04) 0%, transparent 100%),
+    /* Chinese lattice window pattern */
+    repeating-linear-gradient(0deg, rgba(212,168,83,0.05) 0px, rgba(212,168,83,0.05) 1px, transparent 1px, transparent 18px),
+    repeating-linear-gradient(90deg, rgba(212,168,83,0.05) 0px, rgba(212,168,83,0.05) 1px, transparent 1px, transparent 18px),
+    /* Diamond cross-hatch */
+    repeating-linear-gradient(45deg, transparent 0, transparent 12px, rgba(212,168,83,0.025) 12px, rgba(212,168,83,0.025) 13px),
+    repeating-linear-gradient(-45deg, transparent 0, transparent 12px, rgba(212,168,83,0.025) 12px, rgba(212,168,83,0.025) 13px),
+    /* Silk weave micro-texture */
+    repeating-linear-gradient(0deg, rgba(139, 26, 26, 0.02) 0, rgba(139, 26, 26, 0.02) 1px, transparent 1px, transparent 4px);
+  outline-color: var(--clr-gold);
+  color: #F5E6D0;
+  box-shadow:
+    inset 0 0 0 14px #120404,
+    inset 0 0 0 16px var(--clr-gold),
+    inset 0 0 0 17px rgba(139, 26, 26, 0.5),
+    inset 0 0 0 19px #2f150a,
+    inset 0 0 50px rgba(0, 0, 0, 0.25),
+    0 20px 60px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(212, 168, 83, 0.1);
 }
 
 .info-card-header {
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid rgba(212, 168, 83, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
   position: relative;
+  border-bottom: none;
 }
 
-/* Decorative center emblem in header */
+/* Brush-stroke divider — ink splatter fade with center 山水 dot */
 .info-card-header::after {
-  content: '✦';
+  content: '';
   position: absolute;
-  bottom: -0.9rem;
+  bottom: 0;
+  left: 8%;
+  width: 84%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(139, 26, 26, 0.25) 8%,
+    rgba(139, 26, 26, 0.6) 25%,
+    rgba(139, 26, 26, 0.9) 40%,
+    rgba(212, 168, 83, 0.8) 50%,
+    rgba(139, 26, 26, 0.9) 60%,
+    rgba(139, 26, 26, 0.6) 75%,
+    rgba(139, 26, 26, 0.25) 92%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(0.3px);
+}
+
+/* Center ornament on header divider */
+.info-card-header::before {
+  content: '❖';
+  position: absolute;
+  bottom: -6px;
   left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  background: #120303; 
-  border: 1px solid var(--clr-gold);
-  width: 1.4rem;
-  height: 1.4rem;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
   color: var(--clr-gold);
-  font-size: 0.8rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  background: #f3e9cc;
+  padding: 0 8px;
+  z-index: 2;
+  letter-spacing: 0;
+}
+
+.info-card-back .info-card-header::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 168, 83, 0.2) 10%,
+    rgba(212, 168, 83, 0.7) 35%,
+    rgba(255, 248, 224, 0.9) 50%,
+    rgba(212, 168, 83, 0.7) 65%,
+    rgba(212, 168, 83, 0.2) 90%,
+    transparent 100%
+  );
+}
+
+.info-card-back .info-card-header::before {
+  color: var(--clr-gold-light);
+  background: #1a0808;
 }
 
 .info-card-label {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 0.9rem;
+  font-size: 1.45rem;
   font-weight: 900;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--clr-gold);
+  color: #8B1A1A;
   text-align: center;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-  opacity: 0.9;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.1),
+    0 0 20px rgba(139, 26, 26, 0.08);
+  position: relative;
+  padding: 0 0.5rem;
+  /* Subtle ink stroke feel */
+  -webkit-text-stroke: 0.2px rgba(58, 26, 10, 0.15);
+}
+
+/* Chinese characters in label get special treatment */
+.info-card-label::first-line {
+  font-size: 1.1em;
+}
+
+.info-card-back .info-card-label {
+  color: var(--clr-gold-light);
+  text-shadow:
+    0 0 20px rgba(212, 168, 83, 0.45),
+    0 0 40px rgba(212, 168, 83, 0.15);
+  -webkit-text-stroke: 0.2px rgba(212, 168, 83, 0.2);
 }
 
 .info-card-body {
-  padding: 2rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Giant faint watermark character behind the description */
+.info-card-front .info-card-body::before {
+  content: '品'; /* "Taste/Savor" */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 10rem;
+  color: rgba(139, 26, 26, 0.03);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .info-card-text {
   font-family: var(--ff-heading);
-  font-size: 1.35rem; 
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--clr-white);
-  letter-spacing: 0.2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 2.2;
+  color: #2c1810;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+  padding: 1rem 2.5rem;
+}
+
+/* Vertical Chinese text on the left (Traditional Delicacies) */
+.info-card-text::before {
+  content: '傳\A統\A佳\A餚';
+  white-space: pre;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(139, 26, 26, 0.5);
+  letter-spacing: 4px;
+  border-right: 1px solid rgba(139, 26, 26, 0.2);
+  padding-right: 0.6rem;
+}
+
+/* Vertical Chinese text on the right (Imperial Famous Dishes) */
+.info-card-text::after {
+  content: '御\A膳\A名\A菜';
+  white-space: pre;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(139, 26, 26, 0.5);
+  letter-spacing: 4px;
+  border-left: 1px solid rgba(139, 26, 26, 0.2);
+  padding-left: 0.6rem;
+}
+
+/* Ink drop-cap effect on first letter of description */
+.info-card-text::first-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.8em;
+  font-weight: 900;
+  color: #8B1A1A;
+  float: left;
+  line-height: 0.8;
+  margin-right: 8px;
+  margin-top: 4px;
+  font-style: normal;
+  text-shadow: 2px 2px 0px rgba(212, 168, 83, 0.4);
 }
 
 .info-card-text strong {
-  display: block;
+  display: inline-block;
   font-family: 'Cinzel Decorative', serif;
   font-style: normal;
-  font-size: 1.4rem; 
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 1.2rem;
-  color: var(--clr-ember);
-  background: -webkit-linear-gradient(top, var(--clr-gold), var(--clr-ember));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin-bottom: 1.5rem;
+  color: #8B1A1A;
   text-transform: uppercase;
+  position: relative;
+  padding: 0 1.5rem 0.8rem;
+  /* Ink brush calligraphy stroke */
+  -webkit-text-stroke: 0.3px rgba(58, 26, 10, 0.1);
+  text-shadow: 0 2px 4px rgba(139, 26, 26, 0.15);
+  
+  /* Brush stroke underline */
+  background-image: linear-gradient(90deg, transparent, rgba(139, 26, 26, 0.6), transparent);
+  background-size: 80% 2px;
+  background-position: bottom center;
+  background-repeat: no-repeat;
 }
 
-/* ======================== NEW PRICE STYLES ======================== */
+/* Side quote marks for poetic framing */
+.info-card-text strong::before {
+  content: '『';
+  position: absolute;
+  left: -0.2rem;
+  top: -0.2rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.4rem;
+  color: rgba(139, 26, 26, 0.4);
+  font-weight: 400;
+}
+
+.info-card-text strong::after {
+  content: '』';
+  position: absolute;
+  right: -0.2rem;
+  bottom: 0.4rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.4rem;
+  color: rgba(139, 26, 26, 0.4);
+  font-weight: 400;
+}
+
+/* ======================== PRICE STYLES — Back of Card ======================== */
 
 .price-display {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  
-  /* Luxurious Gold Gradient Text */
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin: 1rem 0;
+  position: relative;
+  /* Rich embossed gold with crimson highlight */
   background: linear-gradient(
-    to bottom,
-    #FFF8E7 0%,   /* Very pale gold top */
-    #F0D48A 25%,  /* Light gold */
-    #D4A853 50%,  /* True gold */
-    #B88A32 75%,  /* Darker bronze/gold */
-    #8B6528 100%  /* Deep antique */
+    170deg,
+    #8B6914 0%,
+    #D4A853 20%,
+    #FFE8B0 35%,
+    #FFF8E0 50%,
+    #FFE8B0 65%,
+    #D4A853 80%,
+    #8B6914 100%
   );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  
-  /* Text Shadow for depth */
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-  
-  letter-spacing: 1px;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.7))
+          drop-shadow(0 0 20px rgba(212, 168, 83, 0.5));
+  letter-spacing: 3px;
+  animation: priceGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes priceGlow {
+  0% { filter: drop-shadow(0 3px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 15px rgba(212, 168, 83, 0.3)); }
+  100% { filter: drop-shadow(0 3px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 30px rgba(212, 168, 83, 0.6)); background-position: 100% 100%; }
+}
+
+/* Price value side ornaments */
+.price-display::before {
+  content: '《';
+  font-family: 'Noto Serif SC', serif;
+  margin-right: 0.3rem;
+  font-size: 0.7em;
+  opacity: 0.5;
+}
+
+.price-display::after {
+  content: '》';
+  font-family: 'Noto Serif SC', serif;
+  margin-left: 0.3rem;
+  font-size: 0.7em;
+  opacity: 0.5;
+}
+
+.price-desc {
+  color: rgba(245, 230, 208, 0.85);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  line-height: 1.7;
+  font-family: var(--ff-heading);
+  font-style: italic;
 }
 
 .price-decoration-top,
 .price-decoration-bottom {
   height: 2px;
-  width: 60%;
-  margin: 0.5rem auto;
+  width: 55%;
+  margin: 0.4rem auto;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--clr-gold) 50%,
+    rgba(139, 26, 26, 0.3) 15%,
+    var(--clr-gold) 35%,
+    var(--clr-gold-light) 50%,
+    var(--clr-gold) 65%,
+    rgba(139, 26, 26, 0.3) 85%,
     transparent 100%
   );
+  opacity: 0.7;
   position: relative;
-  opacity: 0.6;
 }
 
-.price-decoration-top::after,
-.price-decoration-bottom::after {
+/* Center diamond ornament */
+.price-decoration-top::after {
   content: '◆';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
   color: var(--clr-gold-light);
-  background: var(--clr-bg); /* Mask the line behind */
-  padding: 0 4px;
+  background: #1a0808;
+  padding: 0 6px;
   font-size: 0.8rem;
 }
 
-/* Specific adjustment for bottom decoration to vary it slightly */
-.price-decoration-bottom {
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  width: 40%;
-}
-
-.price-desc {
-  font-family: var(--ff-heading);
-  font-size: 1.05rem;
-  color: var(--clr-white);
-  font-style: italic;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-  opacity: 0.9;
-}
-
+/* ═══ ORDER BUTTON — Imperial Jade Seal / 玉璽 Style ═══ */
 .order-btn {
   display: inline-block;
-  padding: 1rem 2.5rem;
-  border: 1px solid var(--clr-gold);
+  padding: 1.1rem 2.8rem;
+  border: 2px solid var(--clr-gold);
   color: var(--clr-gold);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   font-family: 'Cinzel Decorative', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 900;
   cursor: pointer;
-  transition: all 0.4s var(--ease);
+  transition: all 0.45s var(--ease);
   position: relative;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 26, 26, 0.35) 0%,
+    rgba(26, 8, 8, 0.5) 50%,
+    rgba(139, 26, 26, 0.25) 100%
+  );
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.6),
+    inset 0 0 15px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(212, 168, 83, 0.15);
+  /* Chinese window octagon shape */
+  clip-path: polygon(
+    8% 0%, 92% 0%, 100% 25%, 100% 75%, 92% 100%, 8% 100%, 0% 75%, 0% 25%
+  );
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .order-btn::before {
@@ -1013,11 +1415,14 @@ a { text-decoration: none; color: inherit; }
 }
 
 .order-btn:hover {
-  color: #1a0505; /* Dark background color for text on gold */
+  color: #1a0505;
   border-color: var(--clr-gold-light);
   box-shadow: 
-    0 0 20px rgba(212, 168, 83, 0.4),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
+    0 0 30px rgba(212, 168, 83, 0.5),
+    0 0 60px rgba(212, 168, 83, 0.2),
+    inset 0 0 15px rgba(255, 255, 255, 0.25);
+  text-shadow: none;
+  letter-spacing: 7px;
 }
 
 .order-btn:hover::before {
@@ -1026,14 +1431,19 @@ a { text-decoration: none; color: inherit; }
 
 .info-card-hint {
   font-family: var(--ff-body);
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: var(--clr-text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(139, 26, 26, 0.35);
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   display: block;
   opacity: 0.7;
+  transition: all 0.4s ease;
+}
+
+.info-card-container:hover .info-card-hint {
+  opacity: 0;
 }
 
 /* ==========================================================================
@@ -1413,6 +1823,40 @@ a { text-decoration: none; color: inherit; }
   animation: appear-on-scroll linear both;
   animation-timeline: view();
   animation-range: entry 20% cover 50%, exit 0% exit 80%;
+  /* Atmospheric ink-wash aura */
+  padding: 2rem 0;
+}
+
+/* Chinese atmosphere — misty ink wash vignette around each section */
+.desc-section::before {
+  content: '';
+  position: absolute;
+  top: -5%;
+  left: -10%;
+  right: -10%;
+  bottom: -5%;
+  background:
+    /* Side glow from gold lantern light */
+    radial-gradient(ellipse 30% 40% at 20% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 100%),
+    radial-gradient(ellipse 30% 40% at 80% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Floating Chinese character watermark behind each dish */
+.desc-section::after {
+  content: '香';  /* 香 = "fragrant" */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15rem;
+  font-weight: 900;
+  color: rgba(212, 168, 83, 0.02);
+  pointer-events: none;
+  z-index: -1;
+  line-height: 1;
 }
 
 @keyframes appear-on-scroll {
