@@ -1,59 +1,54 @@
-# Chinese Restaurant — Simple Static Site
+# 🥢 Golden Dragon — Chinese Restaurant
 
-A cool, simple static website for a small Chinese restaurant. Lightweight HTML/CSS pages showcasing the menu, ordering, reservations, and contact info — ready to open in any browser.
+> A clean, minimal, and responsive static website for a modern dining experience.
 
-Features
-- Clean, responsive static pages: `index.html`, `menu.html`, `order.html`, `reservations.html`, `about.html`
-- Styles in `css/` and assets in `images/` and `music/`
-- No build step — perfect for demos or static hosting
+This #codebase provides a straightforward starting point for a restaurant website, featuring elegant animations, menu displays, and reservation forms — all built with vanilla HTML and CSS.
 
-Quick start
-- Open the site locally: double-click `index.html` or run a lightweight server:
+---
 
-  ```bash
-  python3 -m http.server 8000
-  # then visit http://localhost:8000
-  ```
+### ✨ Key Features
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)](https://USERNAME.github.io/REPO)
+- 🥡 **Dynamic Menu** — Interactive menu categories with pricing.
+- 📅 **Reservations** — Built-in form for booking tables.
+- 🧧 **Online Ordering** — Simplified ordering interface for takeout.
+- 🐉 **About Us** — A deep dive into the restaurant's legacy.
+- 🎵 **Ambient Audio** — Curated background music in the `music/` directory.
+- 🎨 **Responsive Design** — Optimized for both desktop and mobile devices.
 
-````markdown
-# Chinese Restaurant — Simple Static Site
+---
 
-A cool, simple static website for a small Chinese restaurant. Lightweight HTML/CSS pages showcasing the menu, ordering, reservations, and contact info — ready to open in any browser.
+### 📂 Workspace Structure
 
-Features
-- Clean, responsive static pages: `index.html`, `menu.html`, `order.html`, `reservations.html`, `about.html`
-- Styles in `css/` and assets in `images/` and `music/`
-- No build step — perfect for demos or static hosting
+```bash
+.
+├── 📄 index.html        # Landing page (Home)
+├── 📄 about.html        # Story and heritage
+├── 📄 menu.html         # Interactive menu display
+├── 📄 order.html        # Online takeout interface
+├── 📄 reservations.html # Table booking form
+├── 📁 css/              # Core stylesheets (style.css, pages.css)
+├── 📁 images/           # Visual assets and logos
+└── 📁 music/            # Ambient background tracks
+```
 
-Quick start
-- Open the site locally: double-click `index.html` or run a lightweight server:
+---
 
-  ```bash
-  python3 -m http.server 8000
-  # then visit http://localhost:8000
-  ```
+### 🚀 Quick Start
 
-Project layout
+#### Option 1: Browser
+Simply locate the project folder and double-click `index.html`.
 
-- `index.html` — Home
-- `menu.html` — Menu and prices
-- `order.html` — Ordering interface
-- `reservations.html` — Reservation form
-- `about.html` — About the restaurant
-- `css/` — Styles (`pages.css`, `style.css`)
-- `images/` — Images used across the site
-- `music/` — Background/ambience tracks
+#### Option 2: Local Server
+For better development experience (e.g., loading assets correctly), run a simple Python server:
 
-Contributing
+```bash
+python3 -m http.server 8000
+# Then visit http://localhost:8000 in your browser
+```
 
-Keep it simple: edit HTML/CSS, test locally, and open a pull request. Use consistent indentation and avoid large unrelated changes.
+---
 
-License
+### 📜 License
 
-This project includes a `LICENSE` file — see it for details.
+This project is released into the public domain under the **Unlicense**. See [LICENSE](LICENSE) for more details.
 
-Enjoy! If you want, I can also add a tiny `README` badge, deploy script, or a GitHub Pages config.
-
-````
