@@ -1359,25 +1359,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 4px;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--clr-gold);
-  border: 1px solid rgba(212, 168, 83, 0.35);
-  clip-path: polygon(
-    4% 0%, 96% 0%,
-    100% 4%, 100% 96%,
-    96% 100%, 4% 100%,
-    0% 96%, 0% 4%
-  );
-}
-
-.btn-outline:hover {
-  background: rgba(212, 168, 83, 0.1);
-  border-color: var(--clr-gold);
-  box-shadow: 0 0 25px rgba(212, 168, 83, 0.12);
-  letter-spacing: 3.5px;
-}
-
 /* Silk Panel Sidebar */
 .reservation-info {
   position: relative;
