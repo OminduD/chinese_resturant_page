@@ -46,16 +46,17 @@ html {
   font-size: 16px;
   /* Define timeline scope on root so siblings can share it */
   timeline-scope: --main-scroll;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--ff-body);
-  /* Dark wood like texture with bg.jpg */
+  /* Dark wood like texture with bg.webp */
   background-color: var(--clr-bg);
   background-image: 
     radial-gradient(circle at 80% 80%, rgba(61, 16, 16, 0.4), transparent 60%),
     radial-gradient(circle at 20% 30%, rgba(212, 168, 83, 0.03), transparent 50%),
-    url('../images/bg.jpg');
+    url('../images/bg.webp');
   background-size: auto, auto, cover;
   background-position: center;
   background-repeat: no-repeat, no-repeat, no-repeat;
