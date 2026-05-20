@@ -1609,29 +1609,29 @@ a { text-decoration: none; color: inherit; }
 
   /* Reduce label size */
   .info-card-label {
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
   }
 
   .info-card-text {
-    padding: 0.4rem 1.4rem;
-    font-size: 0.88rem;
-    line-height: 1.65;
+    padding: 0.35rem 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.6;
   }
 
   .info-card-text strong {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0 0.5rem 0.5rem;
-    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    padding: 0 0.4rem 0.4rem;
+    margin-bottom: 0.5rem;
   }
 
-  /* Shrink side vertical text */
+  /* Shrink side vertical text — keep them out of card body space */
   .info-card-text::before,
   .info-card-text::after {
-    font-size: 0.55rem;
-    line-height: 1.5;
-    letter-spacing: 2px;
+    font-size: 0.5rem;
+    line-height: 1.4;
+    letter-spacing: 1.5px;
   }
 
   .info-card-text::before {
@@ -1698,7 +1698,7 @@ a { text-decoration: none; color: inherit; }
 /* ====== VERY SMALL SCREENS (iPhone SE etc.) ====== */
 @media (max-width: 375px) {
   :root {
-    --table-size: 95vmin; /* Smallest table to avoid overlap */
+    --table-size: 80vmin; /* Very small table for tiny screens */
   }
 
   .topbar-brand {
