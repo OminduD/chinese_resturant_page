@@ -793,8 +793,6 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 2.5rem;
   max-width: 65vw;
   position: relative;
-  overflow-wrap: break-word;
-  word-break: break-word;
 
   /* Enhanced Imperial Gold Gradient */
   background: linear-gradient(
@@ -1565,18 +1563,21 @@ a { text-decoration: none; color: inherit; }
     /* Explicit width: leave room so card never reaches the table */
     width: calc(100% - 0.4rem);
     padding: 0.5rem 0;
+    overflow: hidden; /* clip any text that runs past the right edge */
   }
 
   .main-heading {
     /* Small enough that even 'BROCCOLI' fits on one line without mid-word break */
-    font-size: clamp(1.2rem, 6.5vw, 2rem);
+    font-size: clamp(1.1rem, 6vw, 1.8rem);
     max-width: 100%;
     margin-bottom: 0.5rem;
-    line-height: 1.15;
+    line-height: 1.2;
     letter-spacing: 0;
     /* Do NOT use word-break:break-word — it causes single letters on new lines */
     word-break: normal;
     overflow-wrap: normal;
+    /* Hard-clip so text never visually bleeds past its box */
+    overflow: hidden;
   }
 
   /* Prevent main heading ornament from overflowing */
