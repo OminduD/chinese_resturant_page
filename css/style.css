@@ -1509,7 +1509,7 @@ a { text-decoration: none; color: inherit; }
 /* ====== MOBILE ====== */
 @media (max-width: 480px) {
   :root {
-    --table-size: 110vmin; /* Much smaller table so content isn't obscured */
+    --table-size: 90vmin; /* Small enough so the table arc stays away from card */
   }
 
   .topbar-inner {
@@ -1552,55 +1552,59 @@ a { text-decoration: none; color: inherit; }
   /* Stack content vertically on small phones */
   .scroll-step {
     padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    /* Push content away from the rotating table (bottom-right corner) */
+    padding-right: 1rem;
     padding-top: 5.5rem;
     padding-bottom: 1rem;
     align-items: flex-start;
     flex-direction: column;
-    /* Ensure content doesn't go into the table corner area.
-       Table is positioned bottom-right. Content must fit in the
-       left portion of the screen. */
     justify-content: flex-start;
   }
 
   .desc-section {
-    width: 100%;
+    /* Explicit width: leave room so card never reaches the table */
+    width: calc(100% - 0.4rem);
     padding: 0.5rem 0;
   }
 
   .main-heading {
-    font-size: clamp(1.4rem, 7.5vw, 2.5rem);
+    /* Small enough that even 'BROCCOLI' fits on one line without mid-word break */
+    font-size: clamp(1.2rem, 6.5vw, 2rem);
     max-width: 100%;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     line-height: 1.15;
-    letter-spacing: 0.5px;
-    word-break: break-word; /* Allow long words to wrap */
-    overflow-wrap: break-word;
+    letter-spacing: 0;
+    /* Do NOT use word-break:break-word — it causes single letters on new lines */
+    word-break: normal;
+    overflow-wrap: normal;
   }
 
   /* Prevent main heading ornament from overflowing */
   .main-heading::after {
-    font-size: 0.65rem;
-    letter-spacing: 3px;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
   }
 
+  /* ── CARD: make it narrower so it doesn't touch the table arc ── */
   .info-card-container {
-    max-width: 100%;
-    width: 100%;
+    /* 88vw leaves a clear gap on the right away from the table */
+    max-width: 88vw;
+    width: 88vw;
+    animation: none; /* disable float animation — reduces layout shift on mobile */
   }
 
   .info-card-front,
   .info-card-back {
-    padding: 1.4rem 1rem;
-    min-height: 300px;
-    outline: 7px solid #2f150a;
-    outline-offset: -7px;
+    padding: 1.2rem 0.9rem;
+    min-height: 260px;
+    outline: 6px solid #2f150a;
+    outline-offset: -6px;
     box-shadow:
-      inset 0 0 0 9px #f3e9cc,
-      inset 0 0 0 11px var(--clr-gold),
-      inset 0 0 0 12px rgba(139, 26, 26, 0.4),
-      inset 0 0 0 14px #2f150a,
-      0 14px 40px rgba(0, 0, 0, 0.8);
+      inset 0 0 0 8px #f3e9cc,
+      inset 0 0 0 10px var(--clr-gold),
+      inset 0 0 0 11px rgba(139, 26, 26, 0.4),
+      inset 0 0 0 13px #2f150a,
+      0 12px 35px rgba(0, 0, 0, 0.8);
   }
 
   /* Reduce label size */
