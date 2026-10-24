@@ -1,5 +1,7 @@
 # 🥢 Golden Dragon — Chinese Restaurant
 
+![Golden Dragon Showcase Banner](images/banner.webp)
+
 > A clean, minimal, and responsive static website for a modern dining experience.
 
 This #codebase provides a straightforward starting point for a restaurant website, featuring elegant animations, menu displays, and reservation forms — all built with vanilla HTML and CSS.
